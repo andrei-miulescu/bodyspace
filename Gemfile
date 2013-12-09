@@ -19,7 +19,6 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '>= 3.0.0.0'
 gem 'timelineJS-rails', '~> 1.1.1'
 
-gem 'rails_12factor'
 
 group :development do
   gem 'better_errors'
@@ -32,6 +31,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'thin'
+  gem 'rails_12factor'
 end
 group :production do
   gem 'unicorn'
