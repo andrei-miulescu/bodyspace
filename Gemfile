@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '>= 3.0.0.0'
 gem 'timelineJS-rails', '~> 1.1.1'
 
+gem 'rails_12factor'
 
 group :development do
   gem 'better_errors'
