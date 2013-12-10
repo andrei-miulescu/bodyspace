@@ -9,7 +9,6 @@ Bundler.require(:default, Rails.env)
 module Bodyspace
   class Application < Rails::Application
 
-
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
 

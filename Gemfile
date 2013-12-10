@@ -31,10 +31,10 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'thin'
-  gem 'rails_12factor'
 end
 group :production do
   gem 'unicorn'
+  gem 'rails_12factor'
 end
 group :test do
   gem 'capybara'
