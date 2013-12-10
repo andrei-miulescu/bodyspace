@@ -1,6 +1,12 @@
 class TimelineController < ApplicationController
 
 
+
+  def create
+    Timeline.create(timeline_params)
+  end
+
+
   def timeline
     json = %q({
                   "timeline":
@@ -22,7 +28,7 @@ class TimelineController < ApplicationController
         "tag":"This is Optional",
         "classname":"optionaluniqueclassnamecanbeaddedhere",
         "asset": {
-        "media":"http://twitter.com/ArjunaSoriano/status/164181156147900416",
+        "media":"http://blah.com/ArjunaSoriano/status/as.jpg",
         "thumbnail":"optional-32x32px.jpg",
         "credit":"Credit Name Goes Here",
         "caption":"Caption text goes here"
@@ -43,6 +49,10 @@ class TimelineController < ApplicationController
     })
 
     render json: json
+  end
+
+  def timeline_params
+      params.require(:timeline).permit!
   end
 
 end
