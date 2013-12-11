@@ -1,43 +1,8 @@
 <h3 class="pull-left">Your Timeline</h3>
-<div class="pull-right button-margin">
-  <button class="btn btn-primary" data-toggle="modal" data-target="#timeline-form">New Timeline</button>
-  <button class="btn btn-primary" data-toggle="modal" data-target="#post-form">New Post</button>
+<div class="pull-right">
+  <%= link_to 'New Timeline', new_timeline_path, class: 'btn btn-primary  navbar-btn' %>
+  <%= link_to 'New Post', new_post_path, class: 'btn btn-primary  navbar-btn' %>
+
 </div>
 
 <div id="timeline"></div>
-
-<div class="modal fade" id="timeline-form" tabindex="-1" role="dialog" aria-labelledby="timeline-formlLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">New Timeline</h4>
-        </div>
-        <div class="modal-body">
-          <%= render partial: 'timeline/form' %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Create</button>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
-
-<div class="modal fade" id="post-form" tabindex="-1" role="dialog" aria-labelledby="post-formlLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">New Post</h4>
-      </div>
-      <div class="modal-body">
-        <%= render partial: 'post/form' %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Create</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div>
