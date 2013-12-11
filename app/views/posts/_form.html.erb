@@ -13,6 +13,13 @@
   <% end %>
 
   <div class="form-group">
+    <%= f.label :timeline, :class => "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.collection_select(:timeline, Timeline.where(user: current_user), :id, :headline, {}, :class => "form-control") %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= f.label :headline, :class => "col-lg-2 control-label" %>
     <div class="col-lg-10">
       <%= f.text_field :headline, :class => "form-control" %>
