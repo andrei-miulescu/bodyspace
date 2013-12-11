@@ -15,7 +15,7 @@
   <div class="form-group">
     <%= f.label :timeline, :class => "col-lg-2 control-label" %>
     <div class="col-lg-10">
-      <%= f.collection_select(:timeline, Timeline.where(user: current_user), :id, :headline, {}, :class => "form-control") %>
+      <%= f.collection_select(:timeline_id, Timeline.where(user: current_user), :id, :headline, {}, :class => "form-control") %>
     </div>
   </div>
 

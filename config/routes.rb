@@ -9,5 +9,5 @@ Bodyspace::Application.routes.draw do
 
 
 
-  #get '/timeline.json',  to: 'timeline#timeline'
+  get '/t/:id.json',  to: 'timelines#with_posts'
 end

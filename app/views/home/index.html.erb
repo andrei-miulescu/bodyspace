@@ -1,8 +1,23 @@
-<h3 class="pull-left">Your Timeline</h3>
+<%- if current_user %>
+<div class="pull-left col-lg-4 "><%= collection_select(:timeline, :timeline_id ,Timeline.where(user: current_user), :id, :headline,{}, { :class => "form-control" } ) %></div>
+
+
+
 <div class="pull-right">
-  <%= link_to 'New Timeline', new_timeline_path, class: 'btn btn-primary  navbar-btn' %>
-  <%= link_to 'New Post', new_post_path, class: 'btn btn-primary  navbar-btn' %>
+  <%= link_to new_timeline_path, :class => 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Timeline
+  <% end %>
+  <%= link_to new_post_path, :class => 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Post
+  <% end %>
 
 </div>
 
 <div id="timeline"></div>
+<%- else %>
+
+login
+
+<%- end %>

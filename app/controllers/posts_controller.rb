@@ -26,6 +26,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    @post.start_date = Date.today
+    @post.end_date = Date.tomorrow
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -69,6 +71,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:headline, :text, :media, :thumbnail, :caption)
+      params.require(:post).permit(:headline, :text, :media, :thumbnail, :caption, :timeline_id)
     end
 end

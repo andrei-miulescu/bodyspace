@@ -12,6 +12,9 @@ class TimelinesController < ApplicationController
   def show
   end
 
+  def with_posts
+    render json: timeline_with_posts
+  end
   # GET /timelines/new
   def new
     @timeline = Timeline.new
@@ -26,6 +29,7 @@ class TimelinesController < ApplicationController
   def create
     @timeline = Timeline.new(timeline_params)
     @timeline.user = current_user
+
     respond_to do |format|
       if @timeline.save
         format.html { redirect_to @timeline, notice: 'Timeline was successfully created.' }
@@ -69,6 +73,46 @@ class TimelinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def timeline_params
-      params.require(:timeline).permit(:headline, :text, :media, :thumbnail, :caption)
+      params.require(:timeline).permit(:headline, :text, :type, :media, :thumbnail, :caption)
     end
+
+    def timeline_with_posts
+      timeline = Timeline.includes(:posts).find(params[:id])
+
+      posts = timeline.posts
+      assetified_posts = []
+      posts.each do |post|
+        assetified_posts << assetify_hash_and_camelize(post.as_json)
+      end
+
+      hash = { timeline: assetify_hash_and_camelize(timeline.as_json).merge({date: assetified_posts})}
+    end
+
+    def assetify_hash_and_camelize(hash)
+      assets =  hash.slice('media', 'caption', 'thumbnail')
+      hash['asset'] = camelize_hash(assets)
+      ['id', 'user_id', 'created_at', 'updated_at', 'media', 'caption', 'thumbnail'].each do |k|
+        hash.delete(k)
+      end
+      hash = format_dates(hash)
+      camelize_hash(hash)
+    end
+
+    def format_dates(hash)
+      sd = hash['start_date']
+      ed = hash['end_date']
+      hash['start_date'] = sd.strftime('%Y,%m,%d') if sd
+      hash['end_date'] = ''
+      hash
+    end
+
+    def camelize_hash hash
+      camelHash = {}
+      hash.each do |k, v|
+        camelHash[k.camelize(:lower)] = v
+      end
+      camelHash
+    end
+
+
 end
