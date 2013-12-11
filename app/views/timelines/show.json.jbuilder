@@ -1,1 +1,1 @@
-json.extract! @timeline, :id, :text, :created_at, :updated_at
+json.extract! @timeline, :id, :headline, :text, :media, :thumbnail, :caption, :created_at, :updated_at
