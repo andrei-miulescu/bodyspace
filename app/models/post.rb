@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
 
-  has_attached_file :image, :path => ':style/:id:class:filename', :styles => { :high => '600x600>', :thumb => '100x100>'},
+  has_attached_file :image, :path => ':style/:class/:id_:filename', :styles => { :high => '600x600>', :thumb => '100x100>'},
                     :storage => :dropbox,
                     :dropbox_credentials => Rails.root.join('config/dropbox.yml')
 
