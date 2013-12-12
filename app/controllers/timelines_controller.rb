@@ -73,7 +73,7 @@ class TimelinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def timeline_params
-      params.require(:timeline).permit(:headline, :text, :type, :media, :thumbnail, :caption)
+      params.require(:timeline).permit(:headline, :text, :type, :image, :caption)
     end
 
     def timeline_with_posts

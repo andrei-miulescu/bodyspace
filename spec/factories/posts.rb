@@ -6,8 +6,6 @@ FactoryGirl.define do
     end_date "2013-12-10"
     headline "MyString"
     text "MyText"
-    media "MyString"
-    thumbnail "MyString"
     caption "MyString"
     timeline_id 1
     user_id 1

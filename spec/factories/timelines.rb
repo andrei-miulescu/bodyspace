@@ -4,8 +4,6 @@ FactoryGirl.define do
   factory :timeline do
     headline "MyString"
     text "MyText"
-    media "MyString"
-    thumbnail "MyString"
     caption "MyString"
     user_id 1
   end

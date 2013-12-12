@@ -19,6 +19,11 @@ gem 'jquery-rails'
 gem 'timelineJS-rails', '~> 1.1.1'
 gem 'bootstrap-generators', '~> 3.0'
 
+#image uploads
+gem 'paperclip', '~> 3.0'
+gem 'dropbox'
+gem 'paperclip-dropbox', '>= 1.1.7'
+
 
 group :development do
   gem 'better_errors'

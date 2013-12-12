@@ -12,8 +12,7 @@
       <tr>
             <th>Headline</th>
             <th>Text</th>
-            <th>Media</th>
-            <th>Thumbnail</th>
+            <th>Image</th>
             <th>Caption</th>
             <th></th>
         <th></th>
@@ -25,8 +24,7 @@
       <%= content_tag_for(:tr, @timelines) do |timeline| %>
             <td><%= timeline.headline %></td>
             <td><%= timeline.text %></td>
-            <td><%= timeline.media %></td>
-            <td><%= timeline.thumbnail %></td>
+            <td><%= timeline.image.url %></td>
             <td><%= timeline.caption %></td>
             <td><%= link_to 'Show', timeline %></td>
         <td><%= link_to 'Edit', edit_timeline_path(timeline) %></td>
