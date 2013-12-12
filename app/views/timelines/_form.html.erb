@@ -35,9 +35,17 @@
   <div class="form-group">
     <%= f.label :image, :class => "col-lg-2 control-label" %>
     <div class="col-lg-10">
-      <%= f.input :image, as: :file, label: false %>
+      <div class="input-group">
+					<span class="input-group-btn">
+						<span class="btn btn-primary btn-file">
+							Browse…<%= f.input :image, as: :file, label: false, error: false %>
+						</span>
+					</span>
+        <input type="text" class="form-control" readonly="">
+      </div>
     </div>
   </div>
+
   <div class="form-group">
     <%= f.label :caption, :class => "col-lg-2 control-label" %>
     <div class="col-lg-10">
