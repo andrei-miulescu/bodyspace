@@ -15,4 +15,4 @@
 //= require turbolinks
 //= require bootstrap
 //= require timelineJS/embed
-//= require_tree .
+//= require home

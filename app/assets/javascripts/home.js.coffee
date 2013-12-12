@@ -3,14 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'ready page:load', ->
-  height = (window.innerHeight - 150)
-  createStoryJS
-    type: "timeline"
-    width: "100%"
-    height: height
-    source: "/t/1.json"
-    embed_id: "timeline"
-
 
   $(".btn-file :file").on "fileselect", (event, numFiles, label) ->
     input = $(this).parents(".input-group").find(":text")
