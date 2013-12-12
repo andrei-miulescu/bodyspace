@@ -13,7 +13,7 @@ class TimelinesController < ApplicationController
   end
 
   def with_posts
-    render json: timeline_with_posts
+    render json: Timeline.includes(:posts).find(params[:id]).media_hash
   end
   # GET /timelines/new
   def new
@@ -75,44 +75,5 @@ class TimelinesController < ApplicationController
     def timeline_params
       params.require(:timeline).permit(:headline, :text, :type, :image, :caption)
     end
-
-    def timeline_with_posts
-      timeline = Timeline.includes(:posts).find(params[:id])
-
-      posts = timeline.posts
-      assetified_posts = []
-      posts.each do |post|
-        assetified_posts << assetify_hash_and_camelize(post.as_json)
-      end
-
-      hash = { timeline: assetify_hash_and_camelize(timeline.as_json).merge({date: assetified_posts})}
-    end
-
-    def assetify_hash_and_camelize(hash)
-      assets =  hash.slice('media', 'caption', 'thumbnail')
-      hash['asset'] = camelize_hash(assets)
-      ['id', 'user_id', 'created_at', 'updated_at', 'media', 'caption', 'thumbnail'].each do |k|
-        hash.delete(k)
-      end
-      hash = format_dates(hash)
-      camelize_hash(hash)
-    end
-
-    def format_dates(hash)
-      sd = hash['start_date']
-      ed = hash['end_date']
-      hash['start_date'] = sd.strftime('%Y,%m,%d') if sd
-      hash['end_date'] = ''
-      hash
-    end
-
-    def camelize_hash hash
-      camelHash = {}
-      hash.each do |k, v|
-        camelHash[k.camelize(:lower)] = v
-      end
-      camelHash
-    end
-
 
 end

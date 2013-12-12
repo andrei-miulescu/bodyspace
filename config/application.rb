@@ -9,7 +9,13 @@ Bundler.require(:default, Rails.env)
 module Bodyspace
   class Application < Rails::Application
 
-    #config.assets.precompile += %w( *.css *.js )
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
+    config.assets.precompile << Proc.new { |path|
+      if path =~ /\.(eot|svg|ttf|woff)\z/
+        true
+      end
+    }
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
 

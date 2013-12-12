@@ -13,7 +13,6 @@
             <th>Headline</th>
             <th>Text</th>
             <th>Image</th>
-            <th>Thumbnail</th>
             <th>Caption</th>
             <th></th>
         <th></th>
@@ -25,7 +24,7 @@
       <%= content_tag_for(:tr, @posts) do |post| %>
             <td><%= post.headline %></td>
             <td><%= post.text %></td>
-            <td><%= post.image.url %></td>
+            <td><%= post.image.url(:high) %></td>
             <td><%= post.caption %></td>
             <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
