@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
 
   has_attached_file :image, :path => ':style/:class/:id_:filename', :styles => { :high => '600x600>', :thumb => '100x100>'},
                     :storage => :dropbox,
-                    :dropbox_credentials => Rails.root.join('config/dropbox.yml')
+                    :dropbox_credentials => Dropbox.dropbox_credentials
 
   belongs_to :timeline
   belongs_to :user
