@@ -16,7 +16,7 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
-gem 'timelineJS-rails', git: 'git@github.com:andrei-miulescu/timelineJS-rails.git', branch: 'master'
+gem 'timelineJS-rails', github: 'andrei-miulescu/timelineJS-rails'
 gem 'bootstrap-generators', '~> 3.0'
 
 #image uploads
