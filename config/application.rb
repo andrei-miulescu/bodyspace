@@ -9,9 +9,7 @@ Bundler.require(:default, Rails.env)
 module Bodyspace
   class Application < Rails::Application
 
-    config.assets.paths << Rails.root.join("vendor", "assets", "fonts")
-
-    config.assets.paths << Rails.root.join("vendor", "assets", "images", "timelineJS")
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
     config.assets.precompile << Proc.new { |path|
       if path =~ /\.(eot|svg|ttf|woff)\z/
