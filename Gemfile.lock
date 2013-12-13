@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/andrei-miulescu/timelineJS-rails.git
-  revision: 56692dbbd5c4e1e934926caf55792762b098a5f5
+  revision: d7d09373072951ad25ebf78aa2cf42c73bcbf6bc
+  ref: d7d09373072951ad25ebf78aa2cf42c73bcbf6bc
   specs:
     timelineJS-rails (1.1.1)
       jquery-rails
