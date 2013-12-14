@@ -18,11 +18,16 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'timelineJS-rails', github: 'andrei-miulescu/timelineJS-rails', ref: 'b502b56889b82c73970a23ce81811de74179e3d9'
 gem 'bootstrap-generators', '~> 3.0'
+gem 'underscore-rails'
 
 #image uploads
 gem 'paperclip', '~> 3.0'
 gem 'dropbox'
 gem 'paperclip-dropbox', '>= 1.1.7'
+
+#scraping
+
+gem 'mechanize', '~> 2.7.2'
 
 
 group :development do

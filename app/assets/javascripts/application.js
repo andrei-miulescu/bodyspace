@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require underscore
 //= require home
+//= require diets
 //= require turbolinks
 //= require bootstrap
 //= require timelineJS/embed

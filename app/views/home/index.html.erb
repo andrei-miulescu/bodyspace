@@ -1,5 +1,5 @@
 <%= content_for :head, javascript_include_tag('root_only',  'data-turbolinks-track' => true) %>
-
+<%= content_for :head, stylesheet_link_tag('timelineJS/timeline', media: 'all',  'data-turbolinks-track' => true) %>
 <%- if current_user %>
 <div class="pull-left col-lg-4 "><%= collection_select(:timeline, :timeline_id ,Timeline.where(user: current_user), :id, :headline,{}, { :class => "form-control" } ) %></div>
 

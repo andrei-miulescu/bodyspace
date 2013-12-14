@@ -10,6 +10,6 @@ Bodyspace::Application.routes.draw do
   resources :users, :posts , :timelines
 
 
-
+  get '/sups', to: 'diets#search_supplement'
   get '/t/:id.json',  to: 'timelines#with_posts'
 end

@@ -24,7 +24,7 @@ class DietsController < ApplicationController
   # POST /diets
   # POST /diets.json
   def create
-    @diet = Diet.new(diet_params)
+    @diet      = Diet.new(diet_params)
     @diet.user = current_user
 
     respond_to do |format|
@@ -52,6 +52,33 @@ class DietsController < ApplicationController
     end
   end
 
+  def search_supplement
+    q        = params[:q]
+    base_url = 'http://www.bodybuilding.com'
+    url      = "#{base_url}/store/catalog/search-results.jsp?q=#{q}"
+
+    @resultHash = []
+
+    page    = mechanize.get(url)
+    results = page.parser.xpath("/html/body/div[@id='bgCon']/div[@id='mainConWithNav']/div[@id='leftContent']/div[@id='content']/div[@id='search-results-product']/div[@class='padded-content'][1]/div")
+
+    results.each do |result_outer|
+      result       = result_outer.xpath("div[@class='product-details']")
+      image_url    = result_outer.xpath("div[@class='product-image']/div[@class='img']/a/img/@src").text
+      info_section = result.search("div[@class='product-spec']/a")
+      @resultHash << {:title             => result.at('h3').text,
+                      :url               => base_url + result.at('h3').at('a')['href'],
+                      :image_url         => image_url,
+                      :short_description => result.at('h4').text,
+                      :description       => result.at('p').text,
+                      :rating            => result.at("div[@class='med-rating']/a").text,
+                      :supported_goal    => info_section[0].try(:text),
+                      :main_ingredient   => info_section[1].try(:text)}
+    end
+
+    render json: @resultHash
+  end
+
   # DELETE /diets/1
   # DELETE /diets/1.json
   def destroy
@@ -63,13 +90,19 @@ class DietsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_diet
-      @diet = Diet.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_diet
+    @diet = Diet.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def diet_params
-      params.require(:diet).permit(:title, :start_date, :goal)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def diet_params
+    params.require(:diet).permit(:title, :start_date, :goal)
+  end
+
+  def mechanize
+    @mechanize ||= Mechanize.new { |agent|
+      agent.user_agent_alias = 'Mac Safari'
+    }
+  end
 end
