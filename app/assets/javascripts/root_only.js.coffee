@@ -1,7 +1,7 @@
 $(document).on 'ready page:load', ->
   createTimeline()
 
-  $('#timeline_timeline_id').change ->
+  $('#timeline_timeline_id').on 'change', ->
     createTimeline()
 
 
