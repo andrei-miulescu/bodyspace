@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131214033713) do
+ActiveRecord::Schema.define(version: 20131214084901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,27 @@ ActiveRecord::Schema.define(version: 20131214033713) do
     t.datetime "updated_at"
     t.integer  "user_id"
   end
+
+  create_table "ingredients", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ingredients", ["name"], name: "index_ingredients_on_name", using: :btree
+
+  create_table "nutritional_items", force: true do |t|
+    t.integer  "ingredient_id"
+    t.integer  "supplement_id"
+    t.decimal  "quantity"
+    t.string   "unit"
+    t.decimal  "rdi"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "nutritional_items", ["ingredient_id"], name: "index_nutritional_items_on_ingredient_id", using: :btree
+  add_index "nutritional_items", ["supplement_id"], name: "index_nutritional_items_on_supplement_id", using: :btree
 
   create_table "posts", force: true do |t|
     t.date     "start_date"
@@ -56,6 +77,18 @@ ActiveRecord::Schema.define(version: 20131214033713) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "supplements", force: true do |t|
+    t.integer  "diet_id"
+    t.string   "title"
+    t.string   "image_url"
+    t.integer  "rating"
+    t.string   "supported_goal"
+    t.string   "main_ingredient"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "timelines", force: true do |t|
     t.string   "headline"
