@@ -22,14 +22,25 @@ $(document).on 'ready page:load', ->
     l = Ladda.create(target)
     l.start()
     url = $(target).data('url')
+    title = $(target).data('title')
     dietId =  $(target).data('dietId')
     $.ajax "/supplements?url_diet=#{url}&diet_id=#{dietId}",
       type: 'POST'
       dataType: 'json'
       error: (jqXHR, textStatus, errorThrown) =>
         l.stop()
+        displayMessage("Failed to add: #{title}", 'alert-danger')
       success: (data, textStatus, jqXHR) =>
         l.stop()
+        displayMessage("Added successfully: #{title}", 'alert-success')
+
+displayMessage = (message, type) ->
+  el =  $('#error-add-supplement')
+  el.removeClass('alert-success')
+  el.removeClass('alert-danger')
+  el.addClass(type) unless el.hasClass(type)
+  el.removeClass('hidden')
+  el.find('.message').text(message)
 
 buildHtml = (data) ->
   resultsContainer = $('#supplement-search-results .row')
@@ -54,7 +65,7 @@ buildHtml = (data) ->
 
     html+= """
                       <p>
-                         <button class='add-supplement-button btn btn-primary ladda-button pull-right' data-style="expand-left" data-url='#{supplement.url}' data-diet-id='#{dietId}' role='button'><span class="ladda-label">Add to diet</span></button>
+                         <button class='add-supplement-button btn btn-primary ladda-button pull-right' data-style="expand-left" data-url='#{supplement.url}' data-title="#{supplement.title}" data-diet-id='#{dietId}' role='button'><span class="ladda-label">Add to diet</span></button>
                       </p>
                       <div style='clear:both;'></div>
                    </div>

@@ -91,30 +91,31 @@ class SupplementsController < ApplicationController
     supplement.main_ingredient = main_ingredient
     supplement.supported_goal  = goal
     supplement.rating          = rating
-    supplement.save!
+    if supplement.save
 
-    table.each do |row|
-      name     = row.xpath("td[@class='line_above seq_span label_ing']/span[@class='ing_normal seq_span label_ing']").text.strip
-      qty_unit = row.xpath("td[@class='line_above seq_span label_qty']/span[@class='ing_normal seq_span label_qty']").text.strip
-      qty_unit = qty_unit.strip.split(" ")
-      qty      = qty_unit[0]
-      unit     = qty_unit[1]
-      rdi      = row.xpath("td[@class='line_above seq_span label_dv']/span[@class='ing_normal seq_span label_dv']").text.squish.gsub(',', '').gsub('*', '')
-      rdi      = rdi.match(/(\d+)/)[1].to_d unless rdi.empty? && !rdi.match(/\d+/)
+      table.each do |row|
+        name     = row.xpath("td[@class='line_above seq_span label_ing']/span[@class='ing_normal seq_span label_ing']").text.strip
+        qty_unit = row.xpath("td[@class='line_above seq_span label_qty']/span[@class='ing_normal seq_span label_qty']").text.strip
+        qty_unit = qty_unit.strip.split(" ")
+        qty      = qty_unit[0]
+        unit     = qty_unit[1]
+        rdi      = row.xpath("td[@class='line_above seq_span label_dv']/span[@class='ing_normal seq_span label_dv']").text.squish.gsub(',', '').gsub('*', '')
+        rdi      = rdi.match(/(\d+)/)[1].to_d unless rdi.empty? && !rdi.match(/\d+/)
 
-      unless (name.blank? && qty.blank?)
+        unless (name.blank? && qty.blank?)
 
-        ingredient = Ingredient.where(name: name).first_or_create
+          ingredient = Ingredient.where(name: name).first_or_create
 
-        nutritional_item            = NutritionalItem.new
-        nutritional_item.ingredient = ingredient
-        nutritional_item.quantity   = qty.to_d if qty
-        nutritional_item.unit       = unit
-        nutritional_item.rdi        = rdi if rdi
-        nutritional_item.supplement = supplement
-        nutritional_item.save!
+          nutritional_item            = NutritionalItem.new
+          nutritional_item.ingredient = ingredient
+          nutritional_item.quantity   = qty.to_d if qty
+          nutritional_item.unit       = unit
+          nutritional_item.rdi        = rdi if rdi
+          nutritional_item.supplement = supplement
+          nutritional_item.save!
+        end
+
       end
-
     end
     supplement
   end
