@@ -30,14 +30,23 @@ buildHtml = (data) ->
                   </div>
                     <div class='caption'>
                       <h4>#{supplement.title}</h4>
-                      <p>Goal: #{supplement.supported_goal} <br/>
-                         Ingredient: #{supplement.main_ingredient}</p>
-                      <p class='pull-right'><a href='#' class='add-supplement-button btn btn-primary' data-url='#{supplement.url}' role='button'>Add to diet</a></p>
+            """
+    goal = ''
+    ingredient = ''
+    goal = "Goal: #{supplement.supported_goal}" if supplement.supported_goal
+    ingredient = "Ingredient: #{supplement.main_ingredient}" if supplement.main_ingredient
+    html+= "<p>#{goal} <br/>
+              #{ingredient}</p>"
+
+    html+= """
+                      <p><div class='pull-left'> Rating: #{supplement.rating}/10</div>
+                         <a href='#' class='add-supplement-button btn btn-primary pull-right' data-url='#{supplement.url}' role='button'>Add to diet</a>
+                      </p>
                       <div style='clear:both;'></div>
                    </div>
                 </div>
                </div>
-    """
+          """
 
   resultsContainer.html(html)
 
