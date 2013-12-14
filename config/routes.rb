@@ -1,4 +1,6 @@
 Bodyspace::Application.routes.draw do
+  resources :supplements
+
   resources :diets
 
   resources :timelines

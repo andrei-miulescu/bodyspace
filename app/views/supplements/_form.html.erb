@@ -1,0 +1,45 @@
+<%= simple_form_for(@supplement, :html => { :class => "form-horizontal" }) do |f| %>
+<% if @supplement.errors.any? %>
+<div class="alert alert-danger alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <h4><%= pluralize(@supplement.errors.count, "error") %> prohibited this supplement
+    from being saved:</h4>
+
+  <ul>
+    <% @supplement.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+  <div class="form-group">
+    <%= f.label :title, :class => "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_field :title, :class => "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :image_url, :class => "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_field :image_url, :class => "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :url, :class => "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_field :url, :class => "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :diet_id, :class => "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.number_field :diet_id, :class => "form-control" %>
+    </div>
+  </div>
+<div class="form-group">
+  <div class="col-lg-offset-2 col-lg-10">
+    <%= f.button :submit, :class => "btn btn-primary" %>
+  </div>
+</div>
+<% end %>

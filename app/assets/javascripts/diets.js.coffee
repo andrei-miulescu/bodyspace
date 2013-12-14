@@ -8,7 +8,7 @@ $(document).on 'ready page:load', ->
     unless q
       alert('error')
     else
-      $('#supplement-search-results .row').html('pinner')
+      $('#supplement-search-results .row').html('<div class="spinner"></div>')
       $.ajax "/sups?q=#{q}",
         type: 'GET'
         dataType: 'json'
