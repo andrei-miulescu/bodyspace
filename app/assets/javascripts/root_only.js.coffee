@@ -1,7 +1,13 @@
 $(document).on 'ready page:load', ->
+  createTimeline()
+
+  $('#timeline_timeline_id').change ->
+    createTimeline()
+
+
+createTimeline = ->
   height = (window.innerHeight - 150)
   selectedTimeline = $('#timeline_timeline_id').val()
-
   createStoryJS
     type: "timeline"
     width: "100%"
