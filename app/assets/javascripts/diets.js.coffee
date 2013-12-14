@@ -35,12 +35,14 @@ $(document).on 'ready page:load', ->
         displayMessage("Added successfully: #{title}", 'alert-success')
 
 displayMessage = (message, type) ->
+  html = """
+    <div class="col-lg-7 pull-left alert #{type}">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p class="message">#{message}</p>
+  </div>
+  """
   el =  $('#error-add-supplement')
-  el.removeClass('alert-success')
-  el.removeClass('alert-danger')
-  el.addClass(type) unless el.hasClass(type)
-  el.removeClass('hidden')
-  el.find('.message').text(message)
+  el.html(html)
 
 buildHtml = (data) ->
   resultsContainer = $('#supplement-search-results .row')
