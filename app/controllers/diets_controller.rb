@@ -64,14 +64,14 @@ class DietsController < ApplicationController
 
     results.each do |result_outer|
       result       = result_outer.xpath("div[@class='product-details']")
-      image_url    = result_outer.xpath("div[@class='product-image']/div[@class='img']/a/img/@src").text
+      image_url    = result_outer.xpath("div[@class='product-image']/div[@class='img']/a/img/@src").try(:text)
       info_section = result.search("div[@class='product-spec']/a")
-      @resultHash << {:title             => result.at('h3').text,
+      @resultHash << {:title             => result.at('h3').try(:text),
                       :url               => base_url + result.at('h3').at('a')['href'],
                       :image_url         => image_url,
-                      :short_description => result.at('h4').text,
-                      :description       => result.at('p').text,
-                      :rating            => result.at("div[@class='med-rating']/a").text,
+                      :short_description => result.at('h4').try(:text),
+                      :description       => result.at('p').try(:text),
+                      :rating            => result.at("div[@class='med-rating']/a").try(:text),
                       :supported_goal    => info_section[0].try(:text),
                       :main_ingredient   => info_section[1].try(:text)}
     end
@@ -92,7 +92,7 @@ class DietsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_diet
-    @diet = Diet.find(params[:id])
+    @diet = Diet.includes(:supplements => :nutritional_items).find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

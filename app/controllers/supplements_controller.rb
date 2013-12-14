@@ -64,7 +64,7 @@ class SupplementsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_supplement
-    @supplement = Supplement.find(params[:id])
+    @supplement = Supplement.includes(:nutritional_items).find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -94,13 +94,20 @@ class SupplementsController < ApplicationController
     if supplement.save
 
       table.each do |row|
-        name     = row.xpath("td[@class='line_above seq_span label_ing']/span[@class='ing_normal seq_span label_ing']").text.strip
-        qty_unit = row.xpath("td[@class='line_above seq_span label_qty']/span[@class='ing_normal seq_span label_qty']").text.strip
-        qty_unit = qty_unit.strip.split(" ")
-        qty      = qty_unit[0]
-        unit     = qty_unit[1]
-        rdi      = row.xpath("td[@class='line_above seq_span label_dv']/span[@class='ing_normal seq_span label_dv']").text.squish.gsub(',', '').gsub('*', '')
-        rdi      = rdi.match(/(\d+)/)[1].to_d unless rdi.empty? && !rdi.match(/\d+/)
+        name     = row.at('.label_ing') #row.xpath("td[@class='line_above seq_span label_ing']/span[@class='ing_normal seq_span label_ing']").text.strip
+        name     = name.text.strip if name
+        qty_unit = row.at('.label_qty') #row.xpath("td[@class='line_above seq_span label_qty']/span[@class='ing_normal seq_span label_qty']").text.strip
+        if qty_unit
+          qty_unit = qty_unit.text.strip
+          qty_unit = qty_unit.strip.split(" ")
+          qty      = qty_unit[0]
+          unit     = qty_unit[1]
+        end
+        rdi = row.at('.label_dv') #row.xpath("td[@class='line_above seq_span label_dv']/span[@class='ing_normal seq_span label_dv']").text.squish.gsub(',', '').gsub('*', '')
+        if rdi
+          rdi = rdi.text.squish.gsub(',', '').gsub('*', '')
+          rdi = rdi.match(/(\d+)/)[1].to_d if rdi && !rdi.empty? && rdi.match(/\d+/)
+        end
 
         unless (name.blank? && qty.blank?)
 

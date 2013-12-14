@@ -10,17 +10,12 @@
   <h1>Show diet</h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt>Title:</dt>
-  <dd><%= @diet.title %></dd>
+<div>
+  <%- @diet.supplements.each do |supplement| %>
+    <p> <%= supplement.title %> <%= supplement.nutritional_items.count %> </p>
+  <%- end %>
+</div>
 
-  <dt>Start date:</dt>
-  <dd><%= @diet.start_date %></dd>
-
-  <dt>Goal:</dt>
-  <dd><%= @diet.goal %></dd>
-
-</dl>
 
 <h3>Supplements</h3>
 
