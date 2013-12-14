@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'timelineJS-rails', github: 'andrei-miulescu/timelineJS-rails', ref: 'b502b56889b82c73970a23ce81811de74179e3d9'
 gem 'bootstrap-generators', '~> 3.0'
 gem 'underscore-rails'
+gem 'bower-rails', '~> 0.6.0'
 
 #image uploads
 gem 'paperclip', '~> 3.0'

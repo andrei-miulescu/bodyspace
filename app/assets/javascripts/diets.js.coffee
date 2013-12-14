@@ -19,15 +19,17 @@ $(document).on 'ready page:load', ->
 
   $(document).on 'click' , '.add-supplement-button', (e)->
     target = e.currentTarget
+    l = Ladda.create(target)
+    l.start()
     url = $(target).data('url')
     dietId =  $(target).data('dietId')
     $.ajax "/supplements?url_diet=#{url}&diet_id=#{dietId}",
       type: 'POST'
       dataType: 'json'
-      error: (jqXHR, textStatus, errorThrown) ->
-        alert('error')
-      success: (data, textStatus, jqXHR) ->
-        alert('created')
+      error: (jqXHR, textStatus, errorThrown) =>
+        l.stop()
+      success: (data, textStatus, jqXHR) =>
+        l.stop()
 
 buildHtml = (data) ->
   resultsContainer = $('#supplement-search-results .row')
@@ -51,11 +53,12 @@ buildHtml = (data) ->
               #{ingredient}</p>"
 
     html+= """
-                      <p><div class='pull-left'> Rating: #{supplement.rating}/10</div>
-                         <button class='add-supplement-button btn btn-primary pull-right' data-url='#{supplement.url}' data-diet-id='#{dietId}' role='button'>Add to diet</button>
+                      <p>
+                         <button class='add-supplement-button btn btn-primary ladda-button pull-right' data-style="expand-left" data-url='#{supplement.url}' data-diet-id='#{dietId}' role='button'><span class="ladda-label">Add to diet</span></button>
                       </p>
                       <div style='clear:both;'></div>
                    </div>
+                  <div class='pull-left' style='position: absolute; top: 5px;'> #{supplement.rating}/10</div>
                 </div>
                </div>
           """

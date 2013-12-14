@@ -18,3 +18,5 @@
 //= require turbolinks
 //= require bootstrap
 //= require timelineJS/embed
+//= require ladda/spin
+//= require ladda/ladda
