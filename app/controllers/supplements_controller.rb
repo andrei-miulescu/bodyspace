@@ -24,10 +24,9 @@ class SupplementsController < ApplicationController
   # POST /supplements
   # POST /supplements.json
   def create
-    @supplement = Supplement.new(supplement_params)
-
+    @supplement = create_mechanize_supplement(params[:url_diet], params[:diet_id]) if params[:url_diet]
     respond_to do |format|
-      if @supplement.save
+      if @supplement.persisted?
         format.html { redirect_to @supplement, notice: 'Supplement was successfully created.' }
         format.json { render action: 'show', status: :created, location: @supplement }
       else
@@ -35,6 +34,7 @@ class SupplementsController < ApplicationController
         format.json { render json: @supplement.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /supplements/1
@@ -62,13 +62,66 @@ class SupplementsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_supplement
-      @supplement = Supplement.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_supplement
+    @supplement = Supplement.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def supplement_params
-      params.require(:supplement).permit(:title, :image_url, :url, :diet_id)
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def supplement_params
+    params.require(:supplement).permit(:title, :image_url, :url, :diet_id)
+  end
+
+  def create_mechanize_supplement(url, diet_id)
+    page            = mechanize.get(url)
+    table           = page.parser.xpath("/html/body/div[@id='bgCon']/div[@id='mainConProd']/div[@id='leftContentProd']/div[@id='right-content-prod']/div[@class='ingredient-table']/div[@class='label_frame']/div[@id='label_preview']/table[@id='label_outer_table']/tbody/tr[@id='facts_outer_line']/td[@id='facts_outer_cell']/table[@id='facts_table']/tbody/tr[@class='facts_label']")
+    title           = page.parser.xpath("/html/body/div[@id='bgCon']/div[@id='mainConProd']/div[@id='leftContentProd']/div[@id='left-content-prod']/div[@class='product-overview hreview-aggregate']/div[@class='product-item-info item']/div[@class='boom-three-column product-description vat']/h1[@class='fn']").text.squish
+    img_url         = page.parser.xpath("/html/body/div[@id='bgCon']/div[@id='mainConProd']/div[@id='leftContentProd']/div[@id='left-content-prod']/div[@class='product-overview hreview-aggregate']/div[@class='product-item-info item']/div[@class='boom-three-column product-image vat']/a[@class='bb-image-viewer']/img[@class='photo']/@src").text
+    goal            = page.parser.xpath("/html/body/div[@id='bgCon']/div[@id='mainConProd']/div[@id='leftContentProd']/div[@id='left-content-prod']/div[@class='product-overview hreview-aggregate']/div[@class='product-item-info item']/div[@class='boom-three-column product-description vat']/p[@class='product-detail-links']/a[1]").text
+    main_ingredient = page.parser.xpath("/html/body/div[@id='bgCon']/div[@id='mainConProd']/div[@id='leftContentProd']/div[@id='left-content-prod']/div[@class='product-overview hreview-aggregate']/div[@class='product-item-info item']/div[@class='boom-three-column product-description vat']/p[@class='product-detail-links']/a[2]").text
+    rating          = page.parser.xpath("/html/body/div[@id='bgCon']/div[@id='mainConProd']/div[@id='leftContentProd']/div[@id='left-content-prod']/div[@class='product-overview hreview-aggregate']/div[@class='boom-three-column product-rating vat']/div[@class='rate-details-con']/div[@class='rate-con rating']/div[@class='rating-bg']/a/span[@class='value']").text
+    rating          = rating.to_d if rating
+
+
+    supplement                 = Supplement.new
+    supplement.url             = url
+    supplement.diet_id         = diet_id
+    supplement.title           = title
+    supplement.image_url       = img_url
+    supplement.main_ingredient = main_ingredient
+    supplement.supported_goal  = goal
+    supplement.rating          = rating
+    supplement.save!
+
+    table.each do |row|
+      name     = row.xpath("td[@class='line_above seq_span label_ing']/span[@class='ing_normal seq_span label_ing']").text.strip
+      qty_unit = row.xpath("td[@class='line_above seq_span label_qty']/span[@class='ing_normal seq_span label_qty']").text.strip
+      qty_unit = qty_unit.strip.split(" ")
+      qty      = qty_unit[0]
+      unit     = qty_unit[1]
+      rdi      = row.xpath("td[@class='line_above seq_span label_dv']/span[@class='ing_normal seq_span label_dv']").text.squish.gsub(',', '').gsub('*', '')
+      rdi      = rdi.match(/(\d+)/)[1].to_d unless rdi.empty? && !rdi.match(/\d+/)
+
+      unless (name.blank? && qty.blank?)
+
+        ingredient = Ingredient.where(name: name).first_or_create
+
+        nutritional_item            = NutritionalItem.new
+        nutritional_item.ingredient = ingredient
+        nutritional_item.quantity   = qty.to_d if qty
+        nutritional_item.unit       = unit
+        nutritional_item.rdi        = rdi if rdi
+        nutritional_item.supplement = supplement
+        nutritional_item.save!
+      end
+
     end
+    supplement
+  end
+
+  def mechanize
+    @mechanize ||= Mechanize.new { |agent|
+      agent.user_agent_alias = 'Mac Safari'
+    }
+  end
 end

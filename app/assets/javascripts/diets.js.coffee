@@ -17,10 +17,22 @@ $(document).on 'ready page:load', ->
         success: (data, textStatus, jqXHR) ->
           buildHtml(data)
 
+  $(document).on 'click' , '.add-supplement-button', (e)->
+    target = e.currentTarget
+    url = $(target).data('url')
+    dietId =  $(target).data('dietId')
+    $.ajax "/supplements?url_diet=#{url}&diet_id=#{dietId}",
+      type: 'POST'
+      dataType: 'json'
+      error: (jqXHR, textStatus, errorThrown) ->
+        alert('error')
+      success: (data, textStatus, jqXHR) ->
+        alert('created')
 
 buildHtml = (data) ->
   resultsContainer = $('#supplement-search-results .row')
   resultsContainer.empty()
+  dietId = resultsContainer.data('dietId')
   html = ''
   _.each data, (supplement) =>
     html += """<div class='col-xs-3' style='margin-top: 40px; min-height: 300px; max-height: 300px;'>
@@ -40,7 +52,7 @@ buildHtml = (data) ->
 
     html+= """
                       <p><div class='pull-left'> Rating: #{supplement.rating}/10</div>
-                         <a href='#' class='add-supplement-button btn btn-primary pull-right' data-url='#{supplement.url}' role='button'>Add to diet</a>
+                         <button class='add-supplement-button btn btn-primary pull-right' data-url='#{supplement.url}' data-diet-id='#{dietId}' role='button'>Add to diet</button>
                       </p>
                       <div style='clear:both;'></div>
                    </div>

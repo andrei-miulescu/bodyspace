@@ -7,7 +7,7 @@ FactoryGirl.define do
     rating ""
     supported_goal ""
     main_ingredient ""
-    nutritional_information_id ""
+    nutritional_item_id ""
     url "MyString"
   end
 end

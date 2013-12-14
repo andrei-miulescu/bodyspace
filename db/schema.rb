@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131214084901) do
+ActiveRecord::Schema.define(version: 20131214103522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,9 +29,11 @@ ActiveRecord::Schema.define(version: 20131214084901) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "nutritional_item_id"
   end
 
   add_index "ingredients", ["name"], name: "index_ingredients_on_name", using: :btree
+  add_index "ingredients", ["nutritional_item_id"], name: "index_ingredients_on_nutritional_item_id", using: :btree
 
   create_table "nutritional_items", force: true do |t|
     t.integer  "ingredient_id"
@@ -82,13 +84,15 @@ ActiveRecord::Schema.define(version: 20131214084901) do
     t.integer  "diet_id"
     t.string   "title"
     t.string   "image_url"
-    t.integer  "rating"
+    t.decimal  "rating"
     t.string   "supported_goal"
     t.string   "main_ingredient"
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "supplements", ["title"], name: "index_supplements_on_title", using: :btree
 
   create_table "timelines", force: true do |t|
     t.string   "headline"
