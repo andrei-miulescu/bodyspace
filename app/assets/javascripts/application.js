@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require home
 //= require turbolinks
 //= require bootstrap
 //= require timelineJS/embed
-//= require home
