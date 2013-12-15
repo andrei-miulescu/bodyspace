@@ -13,6 +13,7 @@
 <div class="container">
   <div class="thumbnail col-lg-2">
     <%= image_tag(@supplement.image_url) %>
+    <p>Based on: <%=@supplement.serving %> serving(s)</p>
   </div>
   <div class="col-lg-10">
     <h3>Nutritional Information</h3>
@@ -21,8 +22,8 @@
     <%- @supplement.nutritional_items.each do |nutritional_item| %>
        <tr>
          <td><%= nutritional_item.ingredient.name %> </td>
-         <td><%= nutritional_item.quantity %> <%= nutritional_item.unit %></td>
-         <td><%= nutritional_item.rdi %></td>
+         <td><%= nutritional_item.quantity.try(:*, @supplement.serving) %> <%= nutritional_item.unit %></td>
+         <td><%= nutritional_item.rdi.try(:*, @supplement.serving) %></td>
        </tr>
     <%- end %>
     </table>

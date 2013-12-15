@@ -69,7 +69,7 @@ class SupplementsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def supplement_params
-    params.require(:supplement).permit(:title, :image_url, :url, :diet_id)
+    params.require(:supplement).permit(:serving)
   end
 
   def create_mechanize_supplement(url, diet_id, serving)
@@ -99,11 +99,10 @@ class SupplementsController < ApplicationController
         name     = name.text.strip if name
         qty_unit = row.at('.label_qty') #row.xpath("td[@class='line_above seq_span label_qty']/span[@class='ing_normal seq_span label_qty']").text.strip
         if qty_unit
-          qty_unit = qty_unit.text.strip
-          qty_unit = qty_unit.strip.split(" ")
-          qty      = qty_unit[0]
-          qty      = qty.squish.gsub(',', '').gsub('*', '') if qty
-          unit     = qty_unit[1]
+          qty_unit = qty_unit.text.squish.gsub(',', '').gsub('*', '')
+          qty_unit = qty_unit.match(/^([.?\d+]+)?\s?([a-z|A-Z]+)?/)
+          qty      = qty_unit[1]
+          unit     = qty_unit[2]
         end
         rdi = row.at('.label_dv') #row.xpath("td[@class='line_above seq_span label_dv']/span[@class='ing_normal seq_span label_dv']").text.squish.gsub(',', '').gsub('*', '')
         if rdi

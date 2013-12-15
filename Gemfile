@@ -31,6 +31,8 @@ gem 'paperclip-dropbox', '>= 1.1.7'
 gem 'mechanize', '~> 2.7.2'
 
 
+gem 'ruby-units', require: 'ruby_units/namespaced'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]

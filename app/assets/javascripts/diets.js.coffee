@@ -23,14 +23,14 @@ $('a[data-toggle="tab"]').on 'click', (e) ->
   e.preventDefault()
   $(this).tab('show')
 
-$(document).on 'click' , '.add-supplement-button', (e)->
+$(document).on 'click', '.add-supplement-button', (e)->
   target = e.currentTarget
   serving = $(target).parent().find('.servings-select').val()
   l = Ladda.create(target)
   l.start()
   url = $(target).data('url')
   title = $(target).data('title')
-  dietId =  $(target).data('dietId')
+  dietId = $(target).data('dietId')
   $.ajax "/supplements?url_diet=#{url}&diet_id=#{dietId}&serving=#{serving}",
     type: 'POST'
     dataType: 'json'
@@ -58,7 +58,7 @@ displayMessage = (message, type) ->
     <p class="message">#{message}</p>
   </div>
   """
-  el =  $('#error-add-supplement')
+  el = $('#error-add-supplement')
   el.html(html)
 
 addSupplementToCarousel = (data)->
@@ -94,12 +94,12 @@ buildHtml = (data) ->
     ingredient = ''
     goal = "Goal: #{supplement.supported_goal}" if supplement.supported_goal
     ingredient = "Ingredient: #{supplement.main_ingredient}" if supplement.main_ingredient
-    html+= "<p>#{goal} <br/>
-              #{ingredient}</p>"
+    html += "<p>#{goal} <br/>
+                  #{ingredient}</p>"
 
-    html+= """
+    html += """
                       <p>
-                        <select class='servings-select form-control pull-left' style='width:50%;'><option value="1">1 Servings</option><option value="2">2 Servings</option><option value="3">3 Servings</option></select>
+                        #{servingsSelect(10)}
                         <button class='add-supplement-button btn btn-primary ladda-button pull-right' data-style="zoom-in" data-url='#{supplement.url}' data-title="#{supplement.title}" data-diet-id='#{dietId}' role='button'><span class="ladda-label">Add to diet</span></button>
                       </p>
                       <div style='clear:both;'></div>
@@ -112,4 +112,14 @@ buildHtml = (data) ->
   resultsContainer.html(html)
 
 truncate = (string, size) ->
-  return jQuery.trim(string).substring(0, size-3).trim(this) + "...";
+  return jQuery.trim(string).substring(0, size - 3).trim(this) + "...";
+
+servingsSelect = (size) ->
+  html = """
+   <select class='servings-select form-control pull-left' style='width:50%;'>
+  """
+  for i in [1..size]
+    html += """<option value="#{i}">#{i} Servings</option>"""
+
+  html += "</select>"
+  html
