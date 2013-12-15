@@ -111,7 +111,7 @@ class SupplementsController < ApplicationController
         end
 
         unless (name.blank? && qty.blank?)
-          ingredient = Ingredient.where(name: name).first_or_create
+          ingredient = Ingredient.where(name: name.titleize).first_or_create
 
           nutritional_item               = NutritionalItem.new
           nutritional_item.ingredient_id = ingredient.id

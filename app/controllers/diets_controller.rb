@@ -1,6 +1,6 @@
 class DietsController < ApplicationController
   before_action :set_diet, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_nutritional_info, only: [:show]
   # GET /diets
   # GET /diets.json
   def index
@@ -98,6 +98,27 @@ class DietsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def diet_params
     params.require(:diet).permit(:title, :start_date, :goal)
+  end
+
+  def set_nutritional_info
+    @nutritional_info ||= {}
+
+
+    @diet.supplements.map do |supplement|
+      supplement.nutritional_items.map do |nutritional_item|
+        key = nutritional_item.ingredient.name.titleize
+        @nutritional_info[key] ||= {}
+        @nutritional_info[key][:rdi] ||= nutritional_item.rdi * supplement.serving if nutritional_item.rdi
+        @nutritional_info[key][:rdi] += nutritional_item.rdi * supplement.serving if nutritional_item.rdi
+        @nutritional_info[key][:qty] ||= RubyUnits::Unit.new("#{nutritional_item.quantity * supplement.serving} #{nutritional_item.unit}") if nutritional_item.unit && nutritional_item.quantity
+        @nutritional_info[key][:qty] += RubyUnits::Unit.new("#{nutritional_item.quantity * supplement.serving} #{nutritional_item.unit}") if nutritional_item.unit && nutritional_item.quantity
+
+        @nutritional_info[key][:qty] ||= nutritional_item.quantity * supplement.serving if nutritional_item.quantity && !nutritional_item.unit
+        @nutritional_info[key][:qty] += nutritional_item.quantity * supplement.serving if nutritional_item.quantity && !nutritional_item.unit
+      end
+    end
+
+    @nutritional_info = Hash[@nutritional_info.sort]
   end
 
   def mechanize

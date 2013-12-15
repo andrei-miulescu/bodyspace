@@ -57,6 +57,18 @@
   <div class="tab-pane" id="nutritional">
     <div class="thumbnail" style="border-top: none; min-height: 600px; border-radius: 0 0 4px 4px">
 
+        <h3>Nutritional Information</h3>
+        <table class="table">
+          <tr><th>Name</th><th>Qty</th><th>%RDI</th></tr>
+          <%- @nutritional_info.each do |key, value|%>
+            <tr>
+              <td><%= key %> </td>
+              <td><%= value[:qty] %></td>
+              <td><%= value[:rdi] %></td>
+            </tr>
+          <%- end %>
+        </table>
+
     </div>
 
   </div>
