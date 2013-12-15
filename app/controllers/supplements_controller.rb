@@ -110,16 +110,17 @@ class SupplementsController < ApplicationController
         end
 
         unless (name.blank? && qty.blank?)
-
-          ingredient = Ingredient.where(name: name).first_or_create
+          ingredient                  = Ingredient.where(name: name).first_or_create
 
           nutritional_item            = NutritionalItem.new
-          nutritional_item.ingredient = ingredient
+          nutritional_item.ingredient_id = ingredient.id
           nutritional_item.quantity   = qty.to_d if qty
-          nutritional_item.unit       = unit
+          nutritional_item.unit       = unit if unit
           nutritional_item.rdi        = rdi if rdi
           nutritional_item.supplement = supplement
-          nutritional_item.save!
+          if nutritional_item.valid?
+            nutritional_item.save
+          end
         end
 
       end
