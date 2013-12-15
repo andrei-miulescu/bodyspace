@@ -31,7 +31,7 @@ gem 'paperclip-dropbox', '>= 1.1.7'
 gem 'mechanize', '~> 2.7.2'
 
 
-gem 'ruby-units', require: 'ruby_units/namespaced'
+gem 'ruby-units'
 
 group :development do
   gem 'better_errors'
