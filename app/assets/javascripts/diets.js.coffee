@@ -20,14 +20,14 @@ $(document).on 'ready page:load', ->
           buildHtml(data)
 
 $(document).on 'click' , '.add-supplement-button', (e)->
-  console.log("register add thing")
   target = e.currentTarget
+  serving = $(target).parent().find('.servings-select').val()
   l = Ladda.create(target)
   l.start()
   url = $(target).data('url')
   title = $(target).data('title')
   dietId =  $(target).data('dietId')
-  $.ajax "/supplements?url_diet=#{url}&diet_id=#{dietId}",
+  $.ajax "/supplements?url_diet=#{url}&diet_id=#{dietId}&serving=#{serving}",
     type: 'POST'
     dataType: 'json'
     error: (jqXHR, textStatus, errorThrown) =>
@@ -55,7 +55,6 @@ displayMessage = (message, type) ->
   el.html(html)
 
 addSupplementToCarousel = (data)->
-  console.log("addSupplementToCarousel #{data.id}")
   html = """
         <li style="border: 1px solid rgb(221, 221, 221); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; margin-left: 10px; width: 33.301886792452834%; max-width: 200px; max-height: 180px;">
           <a href="/supplements/#{data.id}">
@@ -93,7 +92,8 @@ buildHtml = (data) ->
 
     html+= """
                       <p>
-                         <button class='add-supplement-button btn btn-primary ladda-button pull-right' data-style="expand-left" data-url='#{supplement.url}' data-title="#{supplement.title}" data-diet-id='#{dietId}' role='button'><span class="ladda-label">Add to diet</span></button>
+                        <select class='servings-select form-control pull-left' style='width:50%;'><option value="1">1 Servings</option><option value="2">2 Servings</option><option value="3">3 Servings</option></select>
+                        <button class='add-supplement-button btn btn-primary ladda-button pull-right' data-style="zoom-in" data-url='#{supplement.url}' data-title="#{supplement.title}" data-diet-id='#{dietId}' role='button'><span class="ladda-label">Add to diet</span></button>
                       </p>
                       <div style='clear:both;'></div>
                    </div>

@@ -24,7 +24,7 @@ class SupplementsController < ApplicationController
   # POST /supplements
   # POST /supplements.json
   def create
-    @supplement = create_mechanize_supplement(params[:url_diet], params[:diet_id]) if params[:url_diet]
+    @supplement = create_mechanize_supplement(params[:url_diet], params[:diet_id], params[:serving]) if params[:url_diet]
     respond_to do |format|
       if @supplement.persisted?
         format.html { redirect_to @supplement, notice: 'Supplement was successfully created.' }
@@ -72,7 +72,7 @@ class SupplementsController < ApplicationController
     params.require(:supplement).permit(:title, :image_url, :url, :diet_id)
   end
 
-  def create_mechanize_supplement(url, diet_id)
+  def create_mechanize_supplement(url, diet_id, serving)
     page            = mechanize.get(url)
     table           = page.parser.xpath("/html/body/div[@id='bgCon']/div[@id='mainConProd']/div[@id='leftContentProd']/div[@id='right-content-prod']/div[@class='ingredient-table']/div[@class='label_frame']/div[@id='label_preview']/table[@id='label_outer_table']/tbody/tr[@id='facts_outer_line']/td[@id='facts_outer_cell']/table[@id='facts_table']/tbody/tr[@class='facts_label']")
     title           = page.parser.xpath("/html/body/div[@id='bgCon']/div[@id='mainConProd']/div[@id='leftContentProd']/div[@id='left-content-prod']/div[@class='product-overview hreview-aggregate']/div[@class='product-item-info item']/div[@class='boom-three-column product-description vat']/h1[@class='fn']").text.squish
@@ -86,6 +86,7 @@ class SupplementsController < ApplicationController
     supplement                 = Supplement.new
     supplement.url             = url
     supplement.diet_id         = diet_id
+    supplement.serving         = serving
     supplement.title           = title
     supplement.image_url       = img_url
     supplement.main_ingredient = main_ingredient
