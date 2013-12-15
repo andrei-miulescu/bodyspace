@@ -19,24 +19,25 @@ $(document).on 'ready page:load', ->
         success: (data, textStatus, jqXHR) ->
           buildHtml(data)
 
-  $(document).on 'click' , '.add-supplement-button', (e)->
-    target = e.currentTarget
-    l = Ladda.create(target)
-    l.start()
-    url = $(target).data('url')
-    title = $(target).data('title')
-    dietId =  $(target).data('dietId')
-    $.ajax "/supplements?url_diet=#{url}&diet_id=#{dietId}",
-      type: 'POST'
-      dataType: 'json'
-      error: (jqXHR, textStatus, errorThrown) =>
-        l.stop()
-        displayMessage("Failed to add: #{title}", 'alert-danger')
-      success: (data, textStatus, jqXHR) =>
-        l.stop()
-        displayMessage("Added successfully: #{title}", 'alert-success')
-        addSupplementToCarousel(data)
-        incrementCount()
+$(document).on 'click' , '.add-supplement-button', (e)->
+  console.log("register add thing")
+  target = e.currentTarget
+  l = Ladda.create(target)
+  l.start()
+  url = $(target).data('url')
+  title = $(target).data('title')
+  dietId =  $(target).data('dietId')
+  $.ajax "/supplements?url_diet=#{url}&diet_id=#{dietId}",
+    type: 'POST'
+    dataType: 'json'
+    error: (jqXHR, textStatus, errorThrown) =>
+      l.stop()
+      displayMessage("Failed to add: #{title}", 'alert-danger')
+    success: (data, textStatus, jqXHR) =>
+      l.stop()
+      displayMessage("Added successfully: #{title}", 'alert-success')
+      addSupplementToCarousel(data)
+      incrementCount()
 
 incrementCount = ->
   currentCount = parseInt($('#supplement-count').text())
@@ -54,6 +55,7 @@ displayMessage = (message, type) ->
   el.html(html)
 
 addSupplementToCarousel = (data)->
+  console.log("addSupplementToCarousel #{data.id}")
   html = """
         <li style="border: 1px solid rgb(221, 221, 221); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; margin-left: 10px; width: 33.301886792452834%; max-width: 200px; max-height: 180px;">
           <a href="/supplements/#{data.id}">
