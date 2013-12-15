@@ -101,6 +101,7 @@ class SupplementsController < ApplicationController
           qty_unit = qty_unit.text.strip
           qty_unit = qty_unit.strip.split(" ")
           qty      = qty_unit[0]
+          qty      = qty.squish.gsub(',', '').gsub('*', '') if qty
           unit     = qty_unit[1]
         end
         rdi = row.at('.label_dv') #row.xpath("td[@class='line_above seq_span label_dv']/span[@class='ing_normal seq_span label_dv']").text.squish.gsub(',', '').gsub('*', '')
@@ -110,14 +111,14 @@ class SupplementsController < ApplicationController
         end
 
         unless (name.blank? && qty.blank?)
-          ingredient                  = Ingredient.where(name: name).first_or_create
+          ingredient = Ingredient.where(name: name).first_or_create
 
-          nutritional_item            = NutritionalItem.new
+          nutritional_item               = NutritionalItem.new
           nutritional_item.ingredient_id = ingredient.id
-          nutritional_item.quantity   = qty.to_d if qty
-          nutritional_item.unit       = unit if unit
-          nutritional_item.rdi        = rdi if rdi
-          nutritional_item.supplement = supplement
+          nutritional_item.quantity      = qty.to_d if qty
+          nutritional_item.unit          = unit if unit
+          nutritional_item.rdi           = rdi if rdi
+          nutritional_item.supplement    = supplement
           if nutritional_item.valid?
             nutritional_item.save
           end
