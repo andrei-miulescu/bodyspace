@@ -41,12 +41,15 @@ $(document).on 'click' , '.add-supplement-button', (e)->
       l.stop()
       displayMessage("Added successfully: #{title}", 'alert-success')
       addSupplementToCarousel(data)
-      incrementCount()
+      incrementCounts(data)
 
-incrementCount = ->
+incrementCounts = (data) ->
   currentCount = parseInt($('#supplement-count').text())
   currentCount += 1
   $('#supplement-count').text(currentCount)
+  currentNuCount = parseInt($('#nutrition-count').text())
+  currentNuCount += data.nutrition_count
+  $('#nutrition-count').text(currentNuCount)
 
 displayMessage = (message, type) ->
   html = """
