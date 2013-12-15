@@ -19,6 +19,10 @@ $(document).on 'ready page:load', ->
         success: (data, textStatus, jqXHR) ->
           buildHtml(data)
 
+$('a[data-toggle="tab"]').on 'click', (e) ->
+  e.preventDefault()
+  $(this).tab('show')
+
 $(document).on 'click' , '.add-supplement-button', (e)->
   target = e.currentTarget
   serving = $(target).parent().find('.servings-select').val()
