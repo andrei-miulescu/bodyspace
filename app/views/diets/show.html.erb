@@ -7,17 +7,24 @@
     <span class="glyphicon glyphicon-pencil"></span>
     Edit
   <% end %>
-  <h1>Show diet</h1>
+  <h1><%= @diet.title %></h1>
 </div>
-
+<h3>Supplements <span id="supplement-count" class="label label-default"><%= @diet.supplements.count %></span></h3>
 <div>
-  <%- @diet.supplements.each do |supplement| %>
-    <p> <%= supplement.title %> <%= supplement.nutritional_items.count %> </p>
-  <%- end %>
+  <ul id="carousel" class="elastislide-list">
+    <%- @diet.supplements.each do |supplement| %>
+      <li style="border: 1px solid #dddddd; border-radius: 4px; margin-left: 10px;">
+        <%= link_to supplement_path(supplement) do %>
+          <%= image_tag(supplement.image_url, style: 'height: 150px; width: 100px; margin: 0px 50px 30px 50px; ') %>
+          <p style="position: absolute; bottom: 0px; margin-left: 5px; font-size: 90%;"><%= supplement.title.truncate(29) %></p>
+        <%- end %>
+      </li>
+    <%- end %>
+  </ul>
 </div>
 
 
-<h3>Supplements</h3>
+<h3>Add Supplements</h3>
 
 <div class="container">
   <div id="error-add-supplement"></div>

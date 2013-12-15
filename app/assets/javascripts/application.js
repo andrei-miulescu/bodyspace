@@ -20,3 +20,4 @@
 //= require timelineJS/embed
 //= require ladda/spin
 //= require ladda/ladda
+//= require elastislide/jquery.elastislide

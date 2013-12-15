@@ -3,6 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'ready page:load', ->
+  $('#carousel').elastislide()
+
   $('#supplement-search-button').on 'click', ->
     q = $('#supplement-search-input').val()
     unless q
@@ -33,6 +35,13 @@ $(document).on 'ready page:load', ->
       success: (data, textStatus, jqXHR) =>
         l.stop()
         displayMessage("Added successfully: #{title}", 'alert-success')
+        addSupplementToCarousel(data)
+        incrementCount()
+
+incrementCount = ->
+  currentCount = parseInt($('#supplement-count').text())
+  currentCount += 1
+  $('#supplement-count').text(currentCount)
 
 displayMessage = (message, type) ->
   html = """
@@ -44,6 +53,21 @@ displayMessage = (message, type) ->
   el =  $('#error-add-supplement')
   el.html(html)
 
+addSupplementToCarousel = (data)->
+  html = """
+        <li style="border: 1px solid rgb(221, 221, 221); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; margin-left: 10px; width: 33.301886792452834%; max-width: 200px; max-height: 180px;">
+          <a href="/supplements/#{data.id}">
+            <img alt="Image 25754 original x 130 white" src="#{data.image_url}" style="height: 150px; width: 100px; margin: 0px 50px 30px 50px; ">
+            <p style="position: absolute; bottom: 0px; margin-left: 5px; font-size: 90%;">#{truncate(data.title, 29)}</p>
+          </a>
+        </li>
+        """
+  carouselEmpty = $('#carousel').children().size() == 0
+  $('#carousel').append($(html))
+  if(carouselEmpty)
+    $('#carousel').elastislide()
+  else
+    $('#carousel').elastislide('add')
 buildHtml = (data) ->
   resultsContainer = $('#supplement-search-results .row')
   resultsContainer.empty()
@@ -78,3 +102,5 @@ buildHtml = (data) ->
 
   resultsContainer.html(html)
 
+truncate = (string, size) ->
+  return jQuery.trim(string).substring(0, size-3).trim(this) + "...";
