@@ -102,19 +102,19 @@ class DietsController < ApplicationController
 
   def set_nutritional_info
     @nutritional_info ||= {}
-
-
     @diet.supplements.map do |supplement|
       supplement.nutritional_items.map do |nutritional_item|
         key = nutritional_item.ingredient.name.titleize
-        @nutritional_info[key] ||= {}
-        @nutritional_info[key][:rdi] ||= nutritional_item.rdi * supplement.serving if nutritional_item.rdi
-        @nutritional_info[key][:rdi] += nutritional_item.rdi * supplement.serving if nutritional_item.rdi
-        @nutritional_info[key][:qty] ||= RubyUnits::Unit.new("#{nutritional_item.quantity * supplement.serving} #{nutritional_item.unit}") if nutritional_item.unit && nutritional_item.quantity
-        @nutritional_info[key][:qty] += RubyUnits::Unit.new("#{nutritional_item.quantity * supplement.serving} #{nutritional_item.unit}") if nutritional_item.unit && nutritional_item.quantity
+        if nutritional_item.quantity
+          @nutritional_info[key]       ||= {}
+          @nutritional_info[key][:rdi] ||= nutritional_item.rdi * supplement.serving if nutritional_item.rdi
+          @nutritional_info[key][:rdi] += nutritional_item.rdi * supplement.serving if nutritional_item.rdi
+          @nutritional_info[key][:qty] ||= RubyUnits::Unit.new("#{nutritional_item.quantity * supplement.serving} #{nutritional_item.unit}") if nutritional_item.unit && nutritional_item.quantity
+          @nutritional_info[key][:qty] += RubyUnits::Unit.new("#{nutritional_item.quantity * supplement.serving} #{nutritional_item.unit}") if nutritional_item.unit && nutritional_item.quantity
 
-        @nutritional_info[key][:qty] ||= nutritional_item.quantity * supplement.serving if nutritional_item.quantity && !nutritional_item.unit
-        @nutritional_info[key][:qty] += nutritional_item.quantity * supplement.serving if nutritional_item.quantity && !nutritional_item.unit
+          @nutritional_info[key][:qty] ||= nutritional_item.quantity * supplement.serving if nutritional_item.quantity && !nutritional_item.unit
+          @nutritional_info[key][:qty] += nutritional_item.quantity * supplement.serving if nutritional_item.quantity && !nutritional_item.unit
+        end
       end
     end
 

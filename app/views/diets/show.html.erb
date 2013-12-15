@@ -14,7 +14,7 @@
 <ul class="nav nav-tabs">
   <li class="active"><a href="#supplements" data-toggle="tab">Supplements
     <span id="supplement-count" class="label label-default"><%= @diet.supplements.count %></span></a></li>
-  <li><a href="#nutritional" data-toggle="tab">Nutritional Info <span id="nutrition-count" class="label label-default"><%= @diet.supplements.map{|s| s.nutritional_items.count }.sum %></span></a></li>
+  <li><a href="#nutritional" data-toggle="tab">Nutritional Info <span id="nutrition-count" class="label label-default"><%= @nutritional_info.size %></span></a></li>
 </ul>
 
 <div class="tab-content">
