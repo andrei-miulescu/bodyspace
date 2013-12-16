@@ -60,8 +60,6 @@ ActiveRecord::Schema.define(version: 20131215050517) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.string   "media"
-    t.string   "thumb"
   end
 
   add_index "posts", ["timeline_id"], name: "index_posts_on_timeline_id", using: :btree
@@ -105,8 +103,6 @@ ActiveRecord::Schema.define(version: 20131215050517) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.string   "media"
-    t.string   "thumb"
   end
 
   add_index "timelines", ["user_id"], name: "index_timelines_on_user_id", using: :btree
