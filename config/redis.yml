@@ -1,2 +1,2 @@
-production: pub-redis-16622.us-east-1-2.3.ec2.garantiadata.com:16622
+production: redis://redis-app20223279:JRr0tLrDk1S7BBaw@pub-redis-16622.us-east-1-2.3.ec2.garantiadata.com:16622
 development: localhost:6379
