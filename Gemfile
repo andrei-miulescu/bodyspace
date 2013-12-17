@@ -20,6 +20,11 @@ gem 'timelineJS-rails', github: 'andrei-miulescu/timelineJS-rails', ref: 'b502b5
 gem 'bootstrap-generators', '~> 3.0'
 gem 'underscore-rails'
 gem 'modernizr-rails'
+#ember
+
+gem 'ember-rails'
+gem 'ember-source', '~> 1.2.0'
+
 
 #image uploads
 gem 'paperclip', '~> 3.0'

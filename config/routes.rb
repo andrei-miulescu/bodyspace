@@ -10,7 +10,7 @@ Bodyspace::Application.routes.draw do
   resources :posts
 
   root :to => 'home#index'
-  devise_for :users, :controllers => {:registrations => 'registrations'}
+  devise_for :users, :controllers => {:registrations => 'registrations', :sessions => 'sessions'}
   resources :users, :posts , :timelines
 
 
@@ -21,4 +21,5 @@ Bodyspace::Application.routes.draw do
 
   get '/sups', to: 'diets#search_supplement'
   get '/t/:id.json',  to: 'timelines#with_posts'
+
 end
