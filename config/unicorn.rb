@@ -2,11 +2,14 @@ worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 30
 preload_app true
 
+
 before_fork do |server, worker|
   Signal.trap 'TERM' do
     puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
     Process.kill 'QUIT', Process.pid
   end
+
+  @sidekiq_pid ||= spawn('bundle exec sidekiq -e production -C config/sidekiq.yml')
 
   defined?(ActiveRecord::Base) and
       ActiveRecord::Base.connection.disconnect!

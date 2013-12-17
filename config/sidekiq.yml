@@ -1,0 +1,12 @@
+production:
+  :verbose: false
+  :concurrency:  10
+  :queues:
+    - [paperclip, 10]
+
+development:
+  :verbose: false
+  :concurrency:  10
+  :queues:
+    - [paperclip, 10]
+

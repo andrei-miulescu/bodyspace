@@ -23,7 +23,13 @@ gem 'modernizr-rails'
 
 #image uploads
 gem 'paperclip', '~> 3.0'
+gem 'delayed_paperclip', '~> 2.6.1'
 gem 'aws-sdk', '~> 1.5.7'
+
+
+gem 'redis-rails', '~> 4.0.0'
+gem 'sidekiq', '~> 2.17.1'
+gem 'sinatra'
 
 #scraping
 

@@ -3,6 +3,8 @@ class Timeline < ActiveRecord::Base
 
   has_attached_file :image
 
+  process_in_background :image
+
   belongs_to :user
   has_many :posts, dependent: :destroy
 

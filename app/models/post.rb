@@ -2,6 +2,8 @@ class Post < ActiveRecord::Base
 
   has_attached_file :image
 
+  process_in_background :image
+
   belongs_to :timeline
   belongs_to :user
 
