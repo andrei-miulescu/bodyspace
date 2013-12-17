@@ -1,0 +1,29 @@
+development:
+  storage: :s3
+  url: ":s3_domain_url"
+  s3_host_name: "s3-ap-southeast-2.amazonaws.com"
+  styles:
+    high:  '600x600>'
+    thumb: '100x100>'
+  path:    ":style/:class/:id_:filename"
+  s3_credentials:
+    access_key_id:  "AKIAI3YKDTSN4MJYPTJQ"
+    secret_access_key: "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"
+    bucket: "bodyspace-dev"
+  s3_permissions: public_read
+  s3_protocol: ''
+
+production:
+  storage: :s3
+  url: ":s3_domain_url"
+  s3_host_name: "s3-ap-southeast-2.amazonaws.com"
+  styles:
+    high:  '600x600>'
+    thumb: '100x100>'
+  path:    ":style/:class/:id_:filename"
+  s3_credentials:
+    access_key_id:  "AKIAI3YKDTSN4MJYPTJQ"
+    secret_access_key: "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"
+    bucket: "bodyspace"
+  s3_permissions: public_read
+  s3_protocol: ''

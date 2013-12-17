@@ -23,8 +23,7 @@ gem 'modernizr-rails'
 
 #image uploads
 gem 'paperclip', '~> 3.0'
-gem 'dropbox'
-gem 'paperclip-dropbox', '>= 1.1.7'
+gem 'aws-sdk', '~> 1.5.7'
 
 #scraping
 

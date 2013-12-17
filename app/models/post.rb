@@ -1,8 +1,6 @@
 class Post < ActiveRecord::Base
 
-  has_attached_file :image, :path => ':style/:class/:id_:filename', :styles => { :high => '600x600>', :thumb => '100x100>'},
-                    :storage => :dropbox,
-                    :dropbox_credentials => Dropbox.dropbox_credentials
+  has_attached_file :image
 
   belongs_to :timeline
   belongs_to :user
