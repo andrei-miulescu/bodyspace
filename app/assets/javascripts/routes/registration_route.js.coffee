@@ -14,10 +14,10 @@ App.RegistrationRoute = Ember.Route.extend
           "user[email]": @currentModel.email
           "user[password]": @currentModel.password
           "user[password_confirmation]": @currentModel.password_confirmation
-        success: (data) ->
+        success: (data) =>
           @controllerFor('auth').set 'currentUser', data.user
           @transitionTo 'home'
-        error: (jqXHR, textStatus, errorThrown) ->
-          @controllerFor('registration').set "errorMsg", "That email/password combo didn't work.  Please try again"
+        error: (jqXHR, textStatus, errorThrown) =>
+          @controllerFor('registration').set "errorMsg", jqXHR.responseText
       cancel: ->
         @transitionTo 'home'

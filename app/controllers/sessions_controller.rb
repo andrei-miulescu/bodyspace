@@ -12,10 +12,6 @@ class SessionsController < Devise::SessionsController
     return render :json => UserSerializer.new(current_user).as_json.merge({:redirect => stored_location_for(scope) || after_sign_in_path_for(resource)})
   end
 
-  def failure
-    return render :json => {:success => false, :errors => ["Login failed."]}
-  end
-
   def destroy
     signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
     render json: {

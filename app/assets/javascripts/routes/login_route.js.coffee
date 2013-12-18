@@ -17,10 +17,8 @@ App.LoginRoute = Ember.Route.extend
           @transitionTo 'home'
         error: (jqXHR, textStatus, errorThrown) =>
           if jqXHR.status==401
-            @controllerFor('login').set "errorMsg", "That email/password combo didn't work.  Please try again"
+            @controllerFor('login').set "errorMsg", "Email or password invalid. Please try again!"
           else if jqXHR.status==406
             @controllerFor('login').set "errorMsg", "Request not acceptable (406):  make sure Devise responds to JSON."
           else
             log.info "Login Error: #{jqXHR.status} | #{errorThrown}"
-      cancel: ->
-        @transitionTo 'home'
