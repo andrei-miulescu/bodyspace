@@ -1,10 +1,10 @@
-App.RegistrationRoute = Ember.Route.extend
+App.UsersNewRoute = Ember.Route.extend
   model: ->
-   Ember.Object.create()
+    Ember.Object.create()
   actions:
     register: ->
       Ember.$.ajax
-        url: App.urls.register
+        url: App.urls.usersNew
         type: "POST"
         data:
         #would be nice if could do something like this
@@ -15,9 +15,9 @@ App.RegistrationRoute = Ember.Route.extend
           "user[password]": @currentModel.password
           "user[password_confirmation]": @currentModel.password_confirmation
         success: (data) ->
-          @controllerFor('auth').set 'currentUser', data.user
+          @controllerFor('sessionsNew').set 'currentUser', data.user
           @transitionTo 'home'
         error: (jqXHR, textStatus, errorThrown) ->
-          @controllerFor('registration').set "errorMsg", "That email/password combo didn't work.  Please try again"
+          @controllerFor('usersNew').set "errorMsg", "That email/password combo didn't work.  Please try again"
       cancel: ->
         @transitionTo 'home'

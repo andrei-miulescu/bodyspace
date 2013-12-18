@@ -1,4 +1,4 @@
 App.urls ||= {}
-App.urls.login = "/users/sign_in.json"
-App.urls.register = "/users.json"
-App.urls.logout = "/users/sign_out.json"
+App.urls.sessionsNew = "/users/sign_in.json"
+App.urls.usersNew = "/users.json"
+App.urls.sessionsDestroy = "/users/sign_out.json"

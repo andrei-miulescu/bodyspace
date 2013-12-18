@@ -1,0 +1,1 @@
+App.UsersNewController = Ember.ObjectController.extend

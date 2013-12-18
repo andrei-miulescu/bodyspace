@@ -1,4 +1,4 @@
 App.NavbarController = Ember.ObjectController.extend
-  needs: ['auth']
-  isAuthenticated: Em.computed.alias "controllers.auth.isAuthenticated"
-  user: Em.computed.alias "controllers.auth.currentUser"
+  needs: ['sessionsNew']
+  isAuthenticated: Em.computed.alias "controllers.sessionsNew.isAuthenticated"
+  user: Em.computed.alias "controllers.sessionsNew.currentUser"
