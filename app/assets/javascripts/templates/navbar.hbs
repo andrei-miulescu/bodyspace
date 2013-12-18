@@ -10,7 +10,7 @@
       {{#linkTo 'home' class='navbar-brand'}}Bodyspace{{/linkTo}}
     </div>
     <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav pull-right">
+      <ul class="nav navbar-nav">
         {{#if isAuthenticated}}
           <li><a {{action logout}} href="#">Logout</a></li>
           <li class="navbar-text">{{user.name}} </li>

@@ -7,9 +7,9 @@ development:
     thumb: '100x100>'
   path:    ":style/:class/:id_:filename"
   s3_credentials:
-    access_key_id:  "AKIAI3YKDTSN4MJYPTJQ"
-    secret_access_key: "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"
-    bucket: "bodyspace-dev"
+    access_key_id:  "AKIAIPI3OX7XKWMK5KSQ"
+    secret_access_key: "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"
+    bucket: "bodyspace-development"
   s3_permissions: public_read
   s3_protocol: ''
 
@@ -22,8 +22,8 @@ production:
     thumb: '100x100>'
   path:    ":style/:class/:id_:filename"
   s3_credentials:
-    access_key_id:  "AKIAI3YKDTSN4MJYPTJQ"
-    secret_access_key: "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"
-    bucket: "bodyspace"
+    access_key_id:  "AKIAIPI3OX7XKWMK5KSQ"
+    secret_access_key: "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"
+    bucket: "bodyspace-production"
   s3_permissions: public_read
   s3_protocol: ''

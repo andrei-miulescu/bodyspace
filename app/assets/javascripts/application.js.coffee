@@ -2,7 +2,7 @@
 #= require jquery_ujs
 #= require underscore
 #= require bootstrap
-
+#= require timelineJS/embed
 #= require handlebars
 #= require ember
 #= require ember-data

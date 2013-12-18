@@ -1,8 +1,7 @@
-<h1>Bodyspace</h1>
-<p>
-    Welcome!
-</p>
-<p>
-    If you ran rake db:seed, you can log in with <strong>test@test.com</strong>, <strong>tester</strong>.  Or just register.
-</p>
+{{#if isAuthenticated}}
+  <h2>Timeline</h2>
+
+
+  {{ render timelinesShow }}
+{{/if}}
 
