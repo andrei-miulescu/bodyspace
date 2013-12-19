@@ -3,20 +3,34 @@ App.TimelinesShowView = Ember.View.extend
   tagName: 'div'
   classNames: ["timeline"]
 
+  afterInitialLoad: false
+
   afterRender: ->
     window.addEventListener 'resize', =>
       @resizeTimeline()
 
+  myPropertyDidChange: (->
+    if !@afterInitialLoad
+      @afterInitialLoad = true
+    else
+      @buildTimeline()
+  ).observes('controller.timelineSelection')
+
   didInsertElement: ->
-    latestTimeline = _.last(@controller.get('user').timelines)
+    @buildTimeline()
+
+  buildTimeline:  ->
+    id = @controller.get('timelineSelection')
+    $('#timeline').empty() if $('#timeline').html().length > 0
     height = (window.innerHeight - 150)
     createStoryJS
       type: "timeline"
       width: "100%"
       height: height
-      source: "/t/#{latestTimeline}.json"
+      source: "/t/#{id}.json"
       embed_id: "timeline"
       ajax_timeout: 6000
+
 
   resizeTimeline: ->
     height = (window.innerHeight - 150)

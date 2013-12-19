@@ -1,4 +1,13 @@
-<h1> Timelines </h1>
+<div class="pull-left col-lg-4 ">
+{{view App.TimelineSelectView viewName="select"
+    contentBinding="timelines"
+    optionLabelPath="content.headline"
+    optionValuePath="content.id"
+    class="form-control"
+    selectionBinding="App.timelineController.timelineSelection"
+    }}
+</div>
 
-{{ render timelinesShow id="timeline" }}
-
+<div class="container">
+  {{ render timelinesShow id="timeline" }}
+</div>
