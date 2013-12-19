@@ -9,6 +9,7 @@ App.Router.map ->
     @resource 'post', {path: ':post_id'}
 
   @resource 'timelines', ->
+    @route 'new'
     @route 'show'
     @resource 'timeline', {path: ':timeline_id'}
   @route "home"

@@ -2,7 +2,8 @@ App.UploadFile = Ember.TextField.extend(
   type: "file"
   change: (evt) ->
     input = evt.target
-    @set "_parentView.controller.image_extension", input.value.split('.')[1]
+    debugger
+    @set "_parentView.controller.image_extension", _.last(input.value.split('.'))
     if input.files and input.files[0]
       that = this
       reader = new FileReader()

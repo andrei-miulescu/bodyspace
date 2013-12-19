@@ -1,8 +1,7 @@
 App.Timeline  = DS.Model.extend
-  posts: DS.hasMany(App.Post)
-
-
-  asset: DS.belongsTo(App.Asset)
 
   headline: DS.attr('string')
   text: DS.attr('string')
+  image: DS.attr('string')
+  caption: DS.attr('number')
+  image_extension = DS.attr('string')

@@ -33,6 +33,7 @@ class TimelinesController < ApplicationController
   def create
     @timeline = Timeline.new(timeline_params)
     @timeline.user = current_user
+    @timeline.type = 'default'
 
     respond_to do |format|
       if @timeline.save
@@ -77,7 +78,7 @@ class TimelinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def timeline_params
-      params.require(:timeline).permit(:headline, :text, :type, :image, :caption, :user_id)
+      params.require(:timeline).permit(:headline, :text, :image, :caption, :user_id, :image_extension)
     end
 
 end

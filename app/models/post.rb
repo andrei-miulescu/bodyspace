@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
   end
 
 
-  validates_presence_of :headline, :text, :caption , :start_date, :end_date, :timeline, :image
+  validates_presence_of :headline, :text, :caption , :start_date, :end_date, :timeline, :image, :image_extension
 
   def media_hash
     default_values = as_json.symbolize_keys.slice(:headline, :text)
