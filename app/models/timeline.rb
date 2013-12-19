@@ -3,6 +3,10 @@ class Timeline < ActiveRecord::Base
 
   has_attached_file :image
 
+  Paperclip.interpolates :image_extension do |a, s|
+    a.instance.image_extension
+  end
+
   process_in_background :image
 
   belongs_to :user

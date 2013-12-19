@@ -9,9 +9,7 @@
 </div>
 
 <div class="col-lg-8 pull-right">
-
-  {{view App.MenuItem href="#/postsNew" label="New Post" class="btn btn-default" }}
-
+  {{#linkTo 'posts.new'}}<button class="btn btn-default">New post</button>{{/linkTo}}
 </div>
 
 <div class="container">

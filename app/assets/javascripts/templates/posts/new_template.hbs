@@ -1,47 +1,41 @@
-<form accept-charset="UTF-8" action="/posts" class="simple_form form-horizontal" enctype="multipart/form-data" id="new_post" method="post" novalidate="novalidate"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="DZIKqRE5clK4OiHnGOvaUWp4Z9MLPGayTsnWNcmJ8Qg="></div>
+<h2>New post</h2>
+{{#if errorMsg}}
+  <div class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+{{/if}}
+
+<form {{action save on="submit"}} class="form-horizontal">
+  <div class="form-group">
+    <label for="headline" class="col-sm-2 control-label">Headline</label>
+    <div class="col-sm-10">
+      {{view Em.TextField valueBinding="headline" id="headline" action="newPost" class="form-control" placeholder="Headline" required="true"}}
+    </div>
+  </div>
 
   <div class="form-group">
-    <label class="string required control-label col-lg-2 control-label" for="post_timeline"><abbr title="required">*</abbr> Timeline</label>
-    <div class="col-lg-10">
-      <select class="form-control" id="post_timeline_id" name="post[timeline_id]"><option value="4">Timeline 2</option>
-        <option value="3">timeline</option></select>
+    <label for="text" class="col-sm-2 control-label">Text</label>
+    <div class="col-sm-10">
+      {{view Em.TextArea valueBinding="text" id="text" action="newPost" class="form-control" placeholder="Text" required="true"}}
     </div>
   </div>
 
   <div class="form-group">
-    <label class="string required control-label col-lg-2 control-label" for="post_headline"><abbr title="required">*</abbr> Headline</label>
-    <div class="col-lg-10">
-      <input class="form-control" id="post_headline" name="post[headline]" type="text">
+    <label for="image" class="col-sm-2 control-label">Image</label>
+    <div class="col-sm-10">
+      {{view App.UploadFile name="image" id="image" type="file" class="form-control" required="true"}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="caption" class="col-sm-2 control-label">Weight</label>
+    <div class="col-sm-10">
+      {{view Ember.TextField valueBinding="caption" type="number" id="caption" class="form-control" placeholder="Weight" required="true"}}
     </div>
   </div>
   <div class="form-group">
-    <label class="text required control-label col-lg-2 control-label" for="post_text"><abbr title="required">*</abbr> Text</label>
-    <div class="col-lg-10">
-      <textarea class="form-control" id="post_text" name="post[text]"></textarea>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="file required control-label col-lg-2 control-label" for="post_image"><abbr title="required">*</abbr> Image</label>
-    <div class="col-lg-10">
-      <div class="input-group">
-					<span class="input-group-btn">
-						<span class="btn btn-primary btn-file">
-							Browse…<div class="control-group file required post_image"><div class="controls"><input class="file required" id="post_image" name="post[image]" type="file"></div></div>
-						</span>
-					</span>
-        <input type="text" class="form-control" readonly="">
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="string required control-label col-lg-2 control-label" for="post_caption"><abbr title="required">*</abbr> Caption</label>
-    <div class="col-lg-10">
-      <input class="form-control" id="post_caption" name="post[caption]" type="text">
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <input class="btn btn-primary" name="commit" type="submit" value="Create Post">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input type="submit" class="btn btn-default" value="Create post" />
     </div>
   </div>
 </form>

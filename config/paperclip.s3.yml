@@ -5,7 +5,7 @@ development:
   styles:
     high:  '600x600>'
     thumb: '100x100>'
-  path:    ":style/:class/:id_:filename"
+  path:    ":style/:class/:id_image.:image_extension"
   s3_credentials:
     access_key_id:  "AKIAIPI3OX7XKWMK5KSQ"
     secret_access_key: "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"
@@ -20,7 +20,7 @@ production:
   styles:
     high:  '600x600>'
     thumb: '100x100>'
-  path:    ":style/:class/:id_:filename"
+  path:    ":style/:class/:id_image.:image_extension"
   s3_credentials:
     access_key_id:  "AKIAIPI3OX7XKWMK5KSQ"
     secret_access_key: "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"

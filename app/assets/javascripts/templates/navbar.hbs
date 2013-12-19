@@ -12,7 +12,8 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         {{#if isAuthenticated}}
-          <li>{{view App.MenuItem href="#/timelinesShow" label="Timelines" }}</li>
+
+          <li>{{view App.MenuItem href="#/timelines/show" label="Timelines" }}</li>
           <li><a {{action logout}} href="#">Logout</a></li>
           <li class="navbar-text">{{user.name}} </li>
         {{else}}

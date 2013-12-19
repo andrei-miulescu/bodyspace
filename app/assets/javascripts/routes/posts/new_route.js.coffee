@@ -1,7 +1,10 @@
 App.PostsNewRoute = Ember.Route.extend
-  model: ->
-    Ember.Object.create()
+
+  setupController: ->
+    @controller.set 'timelineSelection', (@controllerFor('timelines.show').get('timelineSelection') || _.first(@controllerFor('auth').get('currentUser').timelines).id)
+    @controller.newRecord()
+
   actions:
-    newPost: (model)->
-      model.save()
-      @transitionTo('timelines')
+    save: ->
+      @get('store').commit()
+      @transitionTo 'timelines.show'
