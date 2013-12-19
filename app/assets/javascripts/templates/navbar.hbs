@@ -13,9 +13,9 @@
       <ul class="nav navbar-nav">
         {{#if isAuthenticated}}
 
-          <li>{{view App.MenuItem href="#/timelines/show" label="Timelines" }}</li>
+          {{ view App.NavitemsTimelinesDropdownView }}
           <li><a {{action logout}} href="#">Logout</a></li>
-          <li class="navbar-text">{{user.name}} </li>
+          {{ view App.NavitemsAccountDropdownView }}
         {{else}}
           <li>{{view App.MenuItem href="#/login" label="Login" }}</li>
           <li>{{view App.MenuItem href="#/registration" label="Register"}}</li>

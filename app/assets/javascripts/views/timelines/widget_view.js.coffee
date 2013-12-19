@@ -1,4 +1,3 @@
-
 App.TimelinesWidgetView = Ember.View.extend
   tagName: 'div'
   classNames: ["timeline"]
