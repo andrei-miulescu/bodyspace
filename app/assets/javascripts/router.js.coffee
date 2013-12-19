@@ -5,7 +5,8 @@ App.Router = Em.Router.extend
 
 App.Router.map ->
   @route "home"
-  @route "timeline"
+  @route "timelinesShow"
+  @route "postsNew"
   @route "login"
   @route "logout"
   @route "registration"

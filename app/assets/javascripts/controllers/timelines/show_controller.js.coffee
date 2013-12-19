@@ -1,5 +1,6 @@
 App.TimelinesShowController = Ember.ObjectController.extend
-  needs: ['auth', 'timeline']
+  needs: ['auth']
   isAuthenticated: Em.computed.alias "controllers.auth.isAuthenticated"
   user: Em.computed.alias "controllers.auth.currentUser"
-  timelineSelection: Em.computed.alias 'controllers.timeline.timelineSelection'
+  timelines: Em.computed.alias "controllers.auth.currentUser.timelines"
+  timelineSelection: null

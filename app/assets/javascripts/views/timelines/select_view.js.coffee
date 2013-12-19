@@ -1,4 +1,4 @@
-App.TimelineSelectView = Ember.Select.extend
+App.TimelinesSelectView = Ember.Select.extend
 
   change: ->
     @_parentView.controller.set('timelineSelection', @selection.id)

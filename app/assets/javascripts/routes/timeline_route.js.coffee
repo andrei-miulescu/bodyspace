@@ -1,4 +1,4 @@
 App.TimelineRoute = Ember.Route.extend
-  beforeModel: ->
+  redirect: ->
     @user = @controllerFor('auth').get('currentUser')
     @transitionTo 'login' if !@user

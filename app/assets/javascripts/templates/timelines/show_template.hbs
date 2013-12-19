@@ -1,5 +1,5 @@
 <div class="pull-left col-lg-4 ">
-{{view App.TimelineSelectView viewName="select"
+{{view App.TimelinesSelectView viewName="select"
     contentBinding="timelines"
     optionLabelPath="content.headline"
     optionValuePath="content.id"
@@ -8,6 +8,12 @@
     }}
 </div>
 
+<div class="col-lg-8 pull-right">
+
+  {{view App.MenuItem href="#/postsNew" label="New Post" class="btn btn-default" }}
+
+</div>
+
 <div class="container">
-  {{ render timelinesShow id="timeline" }}
+  {{ view App.TimelinesWidgetView id="timeline" }}
 </div>
