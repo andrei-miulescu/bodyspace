@@ -22,6 +22,14 @@ class Timeline < ActiveRecord::Base
     { timeline: default_values }
   end
 
+  def asset
+    {
+        media: image.url(:high),
+        thumbnail: image.url(:thumb),
+        caption: caption
+    }
+  end
+
   def posts_hash
     posts.map(&:media_hash)
   end

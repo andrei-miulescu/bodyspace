@@ -22,5 +22,12 @@ class Post < ActiveRecord::Base
     default_values
   end
 
+  def asset
+    {
+        media: image.url(:high),
+        thumbnail: image.url(:thumb),
+        caption: caption
+    }
+  end
 
 end

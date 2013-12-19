@@ -5,7 +5,7 @@ App.Router = Em.Router.extend
 
 App.Router.map ->
   @route "home"
-  @route "help"
+  @route "timeline"
   @route "login"
   @route "logout"
   @route "registration"

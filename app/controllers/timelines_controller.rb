@@ -4,7 +4,11 @@ class TimelinesController < ApplicationController
   # GET /timelines
   # GET /timelines.json
   def index
-    @timelines = Timeline.all
+    if params[:user_id]
+      @timelines = Timeline.where(:user_id => params[:user_id])
+    else
+      @timelines = Timeline.all
+    end
   end
 
   # GET /timelines/1
@@ -73,7 +77,7 @@ class TimelinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def timeline_params
-      params.require(:timeline).permit(:headline, :text, :type, :image, :caption)
+      params.require(:timeline).permit(:headline, :text, :type, :image, :caption, :user_id)
     end
 
 end
