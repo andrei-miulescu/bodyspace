@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
-
+  doorkeeper_for :all, except: [:ember]
   before_filter :authenticate_user!
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :null_session
+  protect_from_forgery with: :exception
 
   respond_to :html, :json
 
@@ -13,14 +13,6 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
-  end
-
-  def current_user_json
-    if current_user
-      UserSerializer.new(current_user, :scope => current_user, :root => false).to_json
-    else
-      {}.to_json
-    end
   end
 
   def update_sanitized_params

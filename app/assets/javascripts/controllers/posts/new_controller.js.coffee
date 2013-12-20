@@ -1,5 +1,4 @@
 App.PostsNewController = Ember.ObjectController.extend
-  needs: ['posts']
   timeline: null
 
   newRecord: ->

@@ -1,4 +1,4 @@
 App.NavitemsAccountDropdownController = Ember.ObjectController.extend
-  needs: ['auth']
-  isAuthenticated: Em.computed.alias "controllers.auth.isAuthenticated"
-  user: Em.computed.alias "controllers.auth.currentUser"
+  needs: ['login']
+  isAuthenticated: Em.computed.alias "controllers.session.isAuthenticated"
+  user: Em.computed.alias "controllers.session.currentUser"

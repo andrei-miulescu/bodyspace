@@ -24,12 +24,6 @@
 
   <%= yield %>
 </div>
-<script type="application/javascript">
-  App.ready = function () {
-    App.initApp(jQuery.parseJSON('<%=current_user_json.html_safe %>'))
-  }
-</script>
-
 </body>
 </html>
 

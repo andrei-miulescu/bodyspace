@@ -7,6 +7,7 @@
 #= require handlebars
 #= require ember
 #= require ember-data
+#= require ember-simple-auth
 #= require_self
 #= require bodyspace
 #= require_tree .
