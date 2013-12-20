@@ -7,12 +7,7 @@ class Post < ActiveRecord::Base
   belongs_to :timeline
   belongs_to :user
 
-  Paperclip.interpolates :image_extension do |a, s|
-    a.instance.image_extension
-  end
-
-
-  validates_presence_of :headline, :text, :caption , :start_date, :end_date, :timeline, :image, :image_extension
+  validates_presence_of :headline, :text, :caption , :start_date, :end_date, :timeline
 
   def media_hash
     default_values = as_json.symbolize_keys.slice(:headline, :text)

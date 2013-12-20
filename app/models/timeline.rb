@@ -3,16 +3,12 @@ class Timeline < ActiveRecord::Base
 
   has_attached_file :image
 
-  Paperclip.interpolates :image_extension do |a, s|
-    a.instance.image_extension
-  end
-
   process_in_background :image
 
   belongs_to :user
   has_many :posts, dependent: :destroy
 
-  validates_presence_of :headline, :text, :caption , :type, :image, :image_extension
+  validates_presence_of :headline, :text, :caption , :type, :image
 
   def media_hash
     default_values = as_json.symbolize_keys.slice(:headline, :text, :type)

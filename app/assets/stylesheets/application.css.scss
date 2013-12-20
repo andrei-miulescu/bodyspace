@@ -9,9 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require timelineJS/timeline
  *= require bootstrap
  *= require ladda/ladda
- *= require timelineJS/timeline
+ *= require dropzone/css/dropzone
  *= require elastislide/elastislide
  *= require_tree .
  */

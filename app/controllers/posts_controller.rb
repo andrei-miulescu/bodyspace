@@ -21,10 +21,23 @@ class PostsController < ApplicationController
   def edit
   end
 
+  def create_with_image
+    @post = Post.new(image: params[:file])
+    @post.user = current_user
+    respond_to do |format|
+      if @post.save(validate: false)
+        format.json { render json: {id: @post.id} }
+      else
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = Post.find_or_initialize_by(id: post_params[:id])
+    @post.update_attributes(post_params)
     @post.user = current_user
     @post.start_date = Date.today
     @post.end_date = Date.tomorrow
@@ -71,6 +84,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:headline, :text, :image, :caption, :timeline_id, :image_extension)
+      params.require(:post).permit(:id, :headline, :text, :caption, :timeline_id)
     end
 end

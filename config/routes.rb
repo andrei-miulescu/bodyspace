@@ -9,6 +9,8 @@ Bodyspace::Application.routes.draw do
 
   resources :posts
 
+  match 'posts/create_with_image', to: 'posts#create_with_image', via: [:put, :post]
+
   root :to => 'home#index'
   devise_for :users, :controllers => {:registrations => 'registrations', :sessions => 'sessions'}
   resources :users, :posts , :timelines

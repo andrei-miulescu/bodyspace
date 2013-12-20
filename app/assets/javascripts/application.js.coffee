@@ -3,6 +3,7 @@
 #= require underscore
 #= require bootstrap
 #= require timelineJS/embed
+#= require dropzone/dropzone
 #= require handlebars
 #= require ember
 #= require ember-data
