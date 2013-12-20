@@ -22,7 +22,8 @@ class PostsController < ApplicationController
   end
 
   def create_with_image
-    @post = Post.new(image: params[:file])
+    @post = Post.find_or_initialize_by(id: params[:id])
+    @post.image = params[:file]
     @post.user = current_user
     respond_to do |format|
       if @post.save(validate: false)

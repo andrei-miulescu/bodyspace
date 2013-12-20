@@ -28,7 +28,8 @@ class TimelinesController < ApplicationController
   def edit
   end
   def create_with_image
-    @timeline = Timeline.new(image: params[:file])
+    @timeline = Timeline.find_or_initialize_by(id: params[:id])
+    @timepine.image = params[:file]
     @timeline.user = current_user
     respond_to do |format|
       if @timeline.save(validate: false)
