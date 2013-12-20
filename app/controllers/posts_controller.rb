@@ -37,6 +37,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.find_or_initialize_by(id: post_params[:id])
+    @post.timeline = Timeline.find(post_params.delete(:timeline_id))
     @post.update_attributes(post_params)
     @post.user = current_user
     @post.start_date = Date.today
