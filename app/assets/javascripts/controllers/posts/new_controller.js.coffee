@@ -1,8 +1,9 @@
 App.PostsNewController = Ember.ObjectController.extend
-  timelineSelection: null
+  needs: ['posts']
+  timeline: null
 
   newRecord: ->
-    @set('content', App.Post.createRecord({timeline_id:  @timelineSelection}))
+    @set('content', App.Post.createRecord({timeline_id:  @timeline.id}))
 
   setRecordId: (id) ->
     @content.set('id', id)

@@ -14,13 +14,19 @@
         {{#if isAuthenticated}}
 
           {{ view App.NavitemsTimelinesDropdownView contentBinding="this.timelines" }}
-          <li><a {{action logout}} href="#">Logout</a></li>
-          {{ view App.NavitemsAccountDropdownView }}
+
+
         {{else}}
           <li>{{view App.MenuItem href="#/login" label="Login" }}</li>
           <li>{{view App.MenuItem href="#/registration" label="Register"}}</li>
         {{/if}}
       </ul>
+      {{#if isAuthenticated}}
+        <ul class="nav navbar-nav navbar-right">
+          {{ view App.NavitemsAccountDropdownView }}
+        </ul>
+      {{/if}}
+
     </div>
   </div>
 </nav>

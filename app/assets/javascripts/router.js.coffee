@@ -5,7 +5,7 @@ App.Router = Em.Router.extend
 
 App.Router.map ->
   @resource 'posts', ->
-    @route 'new'
+    @route 'new', {path: 'new/:timeline_id'}
     @resource 'post', {path: ':post_id'}
 
   @resource 'timelines', ->

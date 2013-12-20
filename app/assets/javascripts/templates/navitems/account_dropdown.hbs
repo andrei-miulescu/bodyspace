@@ -2,4 +2,6 @@
 <ul class="dropdown-menu">
   <li>{{view App.MenuItem href="#/timelines/show" label="My account" }}</li>
   <li>{{view App.MenuItem href="#/timelines/new" label="Social connect" }}</li>
+  <li role="presentation" class="divider"></li>
+  <li><a {{action logout}} href="#">Logout</a></li>
 </ul>
