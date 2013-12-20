@@ -5,5 +5,6 @@ App.TimelinesNewRoute = Ember.Route.extend
 
   actions:
     save: ->
+      @controller.setRecordId($('#image-upload-result').val())
       @get('store').commit()
-      @transitionTo 'timelines.show'
+      @transitionTo 'home'

@@ -27,11 +27,22 @@ class TimelinesController < ApplicationController
   # GET /timelines/1/edit
   def edit
   end
-
+  def create_with_image
+    @timeline = Timeline.new(image: params[:file])
+    @timeline.user = current_user
+    respond_to do |format|
+      if @timeline.save(validate: false)
+        format.json { render json: {id: @timeline.id} }
+      else
+        format.json { render json: @timeline.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   # POST /timelines
   # POST /timelines.json
   def create
-    @timeline = Timeline.new(timeline_params)
+    @timeline = Timeline.find_or_initialize_by(id: timeline_params[:id])
+    @timeline.update_attributes(timeline_params)
     @timeline.user = current_user
     @timeline.type = 'default'
 
@@ -78,7 +89,7 @@ class TimelinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def timeline_params
-      params.require(:timeline).permit(:headline, :text, :image, :caption, :user_id)
+      params.require(:timeline).permit(:headline, :text, :caption, :user_id, :id)
     end
 
 end

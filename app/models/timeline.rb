@@ -8,7 +8,7 @@ class Timeline < ActiveRecord::Base
   belongs_to :user
   has_many :posts, dependent: :destroy
 
-  validates_presence_of :headline, :text, :caption , :type, :image
+  validates_presence_of :headline, :text, :caption , :type
 
   def media_hash
     default_values = as_json.symbolize_keys.slice(:headline, :text, :type)

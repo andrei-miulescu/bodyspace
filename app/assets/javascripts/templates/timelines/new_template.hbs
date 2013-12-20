@@ -5,6 +5,9 @@
   </div>
 {{/if}}
 
+{{view App.ComponentsUploadFileView action="timelines/create_with_image" }}
+<br/>
+
 <form {{action save on="submit"}} class="form-horizontal">
   <div class="form-group">
     <label for="headline" class="col-sm-2 control-label">Headline</label>
@@ -17,13 +20,6 @@
     <label for="text" class="col-sm-2 control-label">Text</label>
     <div class="col-sm-10">
       {{view Em.TextArea valueBinding="text" id="text" action="newPost" class="form-control" placeholder="Text" required="true"}}
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="image" class="col-sm-2 control-label">Image</label>
-    <div class="col-sm-10">
-      {{view App.UploadFile name="image" id="image" type="file" class="form-control" required="true"}}
     </div>
   </div>
 
