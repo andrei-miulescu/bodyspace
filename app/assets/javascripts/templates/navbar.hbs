@@ -13,7 +13,7 @@
       <ul class="nav navbar-nav">
         {{#if isAuthenticated}}
 
-          {{ view App.NavitemsTimelinesDropdownView }}
+          {{ view App.NavitemsTimelinesDropdownView contentBinding="this.timelines" }}
           <li><a {{action logout}} href="#">Logout</a></li>
           {{ view App.NavitemsAccountDropdownView }}
         {{else}}

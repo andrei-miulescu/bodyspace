@@ -2,25 +2,20 @@ App.TimelinesWidgetView = Ember.View.extend
   tagName: 'div'
   classNames: ["timeline"]
 
-  afterInitialLoad: false
-
   afterRender: ->
     window.addEventListener 'resize', =>
-      @resizeTimeline()
+      @_resizeTimeline()
 
-  myPropertyDidChange: (->
-    if !@afterInitialLoad
-      @afterInitialLoad = true
-    else
-      @buildTimeline()
-  ).observes('_parentView.controller.timelineSelection')
+  propertyDidChange: (->
+    @_buildTimeline()
+  ).observes('content.id')
 
   didInsertElement: ->
-    @buildTimeline()
+    @_buildTimeline()
 
-  buildTimeline:  ->
-    id = @_parentView.controller.get('timelineSelection')
-    $('#timeline').empty() if $('#timeline').html().length > 0
+  _buildTimeline:   ->
+    id = this.content.get('id')
+    $('#timeline').empty()
     height = (window.innerHeight - 150)
     createStoryJS
       type: "timeline"
@@ -31,6 +26,6 @@ App.TimelinesWidgetView = Ember.View.extend
       ajax_timeout: 6000
 
 
-  resizeTimeline: ->
+  _resizeTimeline: ->
     height = (window.innerHeight - 150)
     $('#timeline').attr("style", "width: 100%; height: #{height}px;")

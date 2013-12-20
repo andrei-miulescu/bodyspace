@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131219074919) do
+ActiveRecord::Schema.define(version: 20131220081026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 20131219074919) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.boolean  "image_processing"
-    t.string   "image_extension"
   end
 
   add_index "posts", ["timeline_id"], name: "index_posts_on_timeline_id", using: :btree
@@ -106,7 +105,6 @@ ActiveRecord::Schema.define(version: 20131219074919) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.boolean  "image_processing"
-    t.string   "image_extension"
   end
 
   add_index "timelines", ["user_id"], name: "index_timelines_on_user_id", using: :btree

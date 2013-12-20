@@ -3,4 +3,3 @@ App.NavitemsTimelinesDropdownView = Ember.View.extend
   classNames: ['dropdown']
 
   templateName: "navitems/timelines_dropdown"
-

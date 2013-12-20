@@ -1,0 +1,8 @@
+
+<div class="pull-right">
+    {{#linkTo 'posts.new'}}<button class="btn btn-default">New post</button>{{/linkTo}}
+</div>
+
+<div class="container">
+  {{ view App.TimelinesWidgetView id="timeline" contentBinding="controller.content" }}
+</div>
