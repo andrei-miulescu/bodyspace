@@ -4,6 +4,10 @@ Doorkeeper.configure do
   orm :active_record
   default_scopes :public
   # This block will be called to check whether the resource owner is authenticated or not.
+  resource_owner_authenticator do |routes|
+    current_user || warden.authenticate!(:scope => :user)
+  end
+
   resource_owner_from_credentials do |routes|
     u = User.find_for_database_authentication(:email => params[:username])
     u if u && u.valid_password?(params[:password])
@@ -24,7 +28,7 @@ Doorkeeper.configure do
   # access_token_expires_in 2.hours
 
   # Issue access tokens with refresh token (disabled by default)
-  #use_refresh_token
+  use_refresh_token
 
   # Provide support for an owner to be assigned to each registered application (disabled by default)
   # Optional parameter :confirmation => true (default false) if you want to enforce ownership of

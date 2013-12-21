@@ -1,5 +1,5 @@
 App.NavbarController = Ember.ObjectController.extend
-  needs: ['login']
-  isAuthenticated: Em.computed.alias "controllers.login.isAuthenticated"
-  user: Em.computed.alias "controllers.login.currentUser"
-  timelines: null
+  isAuthenticated: Em.computed.alias "session.isAuthenticated"
+  user: Em.computed.alias "session.currentUser"
+
+  timelines: Em.computed.alias "session.currentUser.timelines"

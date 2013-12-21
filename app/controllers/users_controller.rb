@@ -2,14 +2,22 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
-    @users = User.all
+    if params[:token]
+      @user = User.find(Doorkeeper::AccessToken.find_by(:token => params[:token]).try(:resource_owner_id))
+    end
+    render json: {:users => [@user.slice(:id, :email, :name).to_json] }
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) if params[:id]
+    if params[:token]
+      @user = User.find(Doorkeeper::AccessToken.find_by(:token => params[:token]).try(:resource_owner_id))
+    end
+    respond_to do |format|
+        format.json { render action: 'show', status: :created, location: @user }
+    end
   end
-  
+
   def update
     authorize! :update, @user, :message => 'Not authorized as an administrator.'
     @user = User.find(params[:id])
@@ -19,7 +27,7 @@ class UsersController < ApplicationController
       redirect_to users_path, :alert => "Unable to update user."
     end
   end
-    
+
   def destroy
     authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
     user = User.find(params[:id])

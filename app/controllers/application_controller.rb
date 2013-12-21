@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  doorkeeper_for :all, except: [:ember]
+  doorkeeper_for :all, :if => lambda { request.xhr? }
   before_filter :authenticate_user!
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -13,6 +13,22 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
+  end
+
+  def current_resource_owner
+    User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+  end
+
+  def current_user_json
+    if current_user
+      UserSerializer.new(current_user, :scope => current_user, :root => false).to_json
+    else
+      {}.to_json
+    end
+  end
+
+  def me
+    respond_with current_resource_owner
   end
 
   def update_sanitized_params

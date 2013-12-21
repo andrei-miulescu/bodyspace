@@ -1,4 +1,4 @@
-App.TimelinesNewRoute = Ember.Route.extend
+App.TimelinesNewRoute =Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
 
   setupController: ->
     @controller.newRecord()
@@ -8,3 +8,4 @@ App.TimelinesNewRoute = Ember.Route.extend
       @controller.setRecordId($('#image-upload-result').val())
       @get('store').commit()
       @transitionTo 'home'
+)

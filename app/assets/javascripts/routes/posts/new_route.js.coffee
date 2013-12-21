@@ -1,4 +1,4 @@
-App.PostsNewRoute = Ember.Route.extend
+App.PostsNewRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
 
   setupController: ->
     @controller.set('timeline', @currentModel)
@@ -9,3 +9,4 @@ App.PostsNewRoute = Ember.Route.extend
       @controller.setRecordId($('#image-upload-result').val())
       @get('store').commit()
       @transitionTo 'timeline', @controller.timeline.id
+)

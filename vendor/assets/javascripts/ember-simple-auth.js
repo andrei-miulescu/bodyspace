@@ -188,7 +188,10 @@ Ember.SimpleAuth.Session = Ember.Object.extend({
     this.setProperties({
       authToken:       data.access_token,
       refreshToken:    (data.refresh_token || this.get('refreshToken')),
-      authTokenExpiry: (data.expires_in > 0 ? data.expires_in * 1000 : this.get('authTokenExpiry')) || 0
+      authTokenExpiry: (data.expires_in > 0 ? data.expires_in * 1000 : this.get('authTokenExpiry')) || 0,
+      userName: data.user.name,
+      userId: data.user.id,
+      userEmail: data.user.email
     });
   },
 
@@ -202,9 +205,20 @@ Ember.SimpleAuth.Session = Ember.Object.extend({
     this.setProperties({
       authToken:       undefined,
       refreshToken:    undefined,
-      authTokenExpiry: undefined
+      authTokenExpiry: undefined,
+      userName: undefined,
+      userId: undefined,
+      userEmail: undefined
     });
   },
+
+  currentUser: Ember.computed('currentUser', function() {
+    var user = new Object()
+    user.id = this.get('userId')
+    user.name = this.get('userName')
+    user.email = this.get('userEmail')
+    return user
+  }),
 
   /**
     Returns whether a user is currently authenticated.
@@ -224,7 +238,10 @@ Ember.SimpleAuth.Session = Ember.Object.extend({
     this.setProperties({
       authToken:       this.load('authToken'),
       refreshToken:    this.load('refreshToken'),
-      authTokenExpiry: this.load('authTokenExpiry')
+      authTokenExpiry: this.load('authTokenExpiry'),
+      userName:        this.load('userName'),
+      userId:          this.load('userId'),
+      userEmail:        this.load('userEmail')
     });
     if (!Ember.testing) {
       Ember.run.cancel(Ember.SimpleAuth.Session._syncPropertiesTimeout);
@@ -260,6 +277,19 @@ Ember.SimpleAuth.Session = Ember.Object.extend({
   authTokenObserver: Ember.observer(function() {
     this.store('authToken');
   }, 'authToken'),
+
+  userNameObserver: Ember.observer(function() {
+      this.store('userName');
+  }, 'userName'),
+
+  userIdObserver: Ember.observer(function() {
+      this.store('userId');
+  }, 'userId'),
+
+  userEmailObserver: Ember.observer(function() {
+      this.store('userEmail');
+  }, 'userEmail'),
+
 
   /**
     @method refreshTokenObserver
