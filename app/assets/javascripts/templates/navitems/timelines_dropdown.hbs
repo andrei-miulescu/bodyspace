@@ -5,6 +5,9 @@
     {{#each timeline in timelines}}
       <li>{{#link-to 'timeline' timeline.id}}{{timeline.headline}}{{/link-to}}</li>
     {{/each}}
+
+    <li role="presentation" class="dropdown-header">{{timelines.count}}</li>
+
     <li role="presentation" class="divider"></li>
     <li>{{view App.MenuItem href="#/timelines/new" label="New timeline" }}</li>
   </ul>

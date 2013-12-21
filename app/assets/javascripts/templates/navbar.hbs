@@ -12,10 +12,7 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         {{#if isAuthenticated}}
-
-          {{ view App.NavitemsTimelinesDropdownView contentBinding="this.timelines" }}
-
-
+          {{ view App.NavitemsTimelinesDropdownView  userBinding="this.user" }}
         {{else}}
           <li>{{view App.MenuItem href="#/login" label="Login" }}</li>
           <li>{{view App.MenuItem href="#/registration" label="Register"}}</li>
