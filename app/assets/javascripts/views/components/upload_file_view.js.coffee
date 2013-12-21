@@ -16,6 +16,5 @@ App.ComponentsUploadFileView = Ember.View.extend
 
   didInsertElement: ->
     @dropzone = new Dropzone("#" + @id)
-    debugger
     @dropzone.on 'success', (file, xhr) ->
       $('#image-upload-result').attr('value', xhr.id)
