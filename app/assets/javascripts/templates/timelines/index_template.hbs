@@ -1,9 +1,20 @@
 <h1>Timelines</h1>
 
-{{#each model}}
-  {{#link-to 'timeline' id}}
-    <div class="thumbnail"></div>
-    {{headline}}
 
-  {{/link-to}}
-{{/each}}
+
+<div class="row">
+  {{#each model}}
+    {{#link-to 'timeline' id}}
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail-noconflict">
+          <img {{bindAttr src="image"}} alt="{{caption}}"/>
+          <h3> {{headline}}</h3>
+          <p>{{text}}</p>
+        </div>
+      </div>
+    {{/link-to}}
+  {{/each}}
+</div>
+
+
+

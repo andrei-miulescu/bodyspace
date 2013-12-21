@@ -10,3 +10,39 @@ img {
 .navbar-brand {
   font-size: inherit;
   }
+
+
+.thumbnail-noconflict {
+  display: inline-block;
+  display: block;
+  height: auto;
+  max-width: 100%;
+  padding: 4px;
+  line-height: 1.428571429;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.thumbnail-noconflict > img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+a.thumbnail-noconflict:hover,
+a.thumbnail-noconflict:focus {
+  border-color: #428bca;
+}
+
+.thumbnail-noconflict > img {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.thumbnail-noconflict .caption {
+  padding: 9px;
+  color: #333333;
+}
