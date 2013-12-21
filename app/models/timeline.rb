@@ -10,6 +10,8 @@ class Timeline < ActiveRecord::Base
 
   validates_presence_of :headline, :text, :caption , :type
 
+  scope :valid_timelines, includes(:posts).where('headline is NOT NULL')
+
   def media_hash
     default_values = as_json.symbolize_keys.slice(:headline, :text, :type)
     asset =  {

@@ -5,9 +5,9 @@ class TimelinesController < ApplicationController
   # GET /timelines.json
   def index
     if params[:user_id]
-      @timelines = Timeline.where(:user_id => params[:user_id])
+      @timelines = Timeline.valid_timelines.where(:user_id => params[:user_id])
     else
-      @timelines = Timeline.all
+      @timelines = Timeline.valid_timelines.all
     end
   end
 
@@ -17,7 +17,7 @@ class TimelinesController < ApplicationController
   end
 
   def with_posts
-    render json: Timeline.includes(:posts).find(params[:id]).media_hash
+    render json: Timeline.valid_timelines.includes(:posts).find(params[:id]).media_hash
   end
   # GET /timelines/new
   def new
@@ -29,7 +29,7 @@ class TimelinesController < ApplicationController
   end
   def create_with_image
     @timeline = Timeline.find_or_initialize_by(id: params[:id])
-    @timepine.image = params[:file]
+    @timeline.image = params[:file]
     @timeline.user = current_user
     respond_to do |format|
       if @timeline.save(validate: false)

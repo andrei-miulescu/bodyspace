@@ -1,15 +1,18 @@
-<h1>Timelines</h1>
-
-
+<h2 class="col-lg-4">Timelines</h2>
+<div class="col-lg-8">{{#linkTo 'timelines.new' class="pull-right"}}<button class="btn btn-default">New timeline</button>{{/linkTo}}</div>
+<div style="clear:both"></div>
 
 <div class="row">
   {{#each model}}
     {{#link-to 'timeline' id}}
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail-noconflict">
-          <img {{bindAttr src="image"}} alt="{{caption}}"/>
-          <h3> {{headline}}</h3>
-          <p>{{text}}</p>
+          <img {{bindAttr src="image"}} alt="{{caption}}" height="300" width="300"/>
+          <h3> {{headline}} <span class="label label-default">{{postsCount}} posts</span></h3>
+          <p>
+              {{#linkTo 'timeline' id}}<button class="btn btn-default">Edit timeline</button>{{/linkTo}}
+            {{#linkTo 'posts.new' id}}<button class="btn btn-default">New post</button>{{/linkTo}}
+          </p>
         </div>
       </div>
     {{/link-to}}

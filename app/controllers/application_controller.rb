@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
-  doorkeeper_for :all, :if => lambda { request.xhr? }
+
+  PUBLIC_ENDPOINTS = [{ controller: 'timelines', action: 'create_with_image'}, { controller: 'posts', action: 'create_with_image'}]
+
+  doorkeeper_for :all, :if => lambda { request.xhr? && !PUBLIC_ENDPOINTS.any? { |e| e[:controller] == controller_name && e[:action] == action_name }}
   before_filter :authenticate_user!
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

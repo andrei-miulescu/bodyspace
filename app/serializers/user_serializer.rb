@@ -1,7 +1,4 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :name, :timelines
+  attributes :id, :email, :name
 
-  def timelines
-    Timeline.where(:user_id => id).map{|t| {id: t.id, headline: t.headline}}
-  end
 end

@@ -16,7 +16,9 @@ Ember.RSVP.configure "onerror", (e) ->
     )
     for cookieName in cookieNames
       $.removeCookie(cookieName)
-  window.location.hash = '#login'
+    window.location.hash = '#login'
+  else
+    window.location.hash = '#error'
 
 App.Store = DS.Store.extend
   revision: 11
