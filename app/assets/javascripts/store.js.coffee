@@ -8,6 +8,15 @@ DS.RESTAdapter.map "App.Post",
   asset:
     embedded: "always"
 
+Ember.RSVP.configure "onerror", (e) ->
+  if e.status == 401
+    cookies = document.cookie.split('=')
+    cookieNames = _.reject(cookies, (num) ->
+        num % 2 is 0
+    )
+    for cookieName in cookieNames
+      $.removeCookie(cookieName)
+  window.location.hash = '#login'
 
 App.Store = DS.Store.extend
   revision: 11

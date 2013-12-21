@@ -1,6 +1,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require underscore
+#= require jquery.cookie
 #= require bootstrap
 #= require timelineJS/embed
 #= require dropzone/dropzone
