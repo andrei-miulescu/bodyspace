@@ -5,10 +5,10 @@ json.set! :diets do
     json.supplement_ids diet.supplements.collect(&:id)
   end
 end
- json.set! :supplements do
-    @diets.each do |diet|
-        json.array! (diet.supplements) do |supplement|
-          json.extract! supplement, :id, :title, :image_url
-        end
+json.set! :supplements do
+  @diets.each do |diet|
+    json.array! (diet.supplements) do |supplement|
+      json.extract! supplement, :id, :title, :image_url
     end
   end
+end
