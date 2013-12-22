@@ -1,7 +1,7 @@
 App.SearchSupplement  = DS.Model.extend
 
   title: DS.attr('string')
-  imageUrl: DS.attr('string')
+  image_url: DS.attr('string')
   description: DS.attr('string')
   main_ingredient: DS.attr('string')
   rating: DS.attr('string')

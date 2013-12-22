@@ -9,3 +9,31 @@
     </div>
   </div>
 </div>
+<div class="container">
+  <div class="row">
+    {{#each supplement in supplementResults}}
+      <div class='col-xs-3' style='margin-top: 40px;'>
+        <div class='thumbnail-noconflict'>
+            <img {{bindAttr src="supplement.image_url"}} />
+          <div class='caption'>
+            <h4>{{supplement.title}}</h4>
+            <p>
+              {{view Ember.Select
+                content=servings
+                optionValuePath="content.value"
+                optionLabelPath="content.title"
+                selection=selectedServing
+                class="servings-select form-control pull-left"
+              }}
+              <button {{action 'addToDiet' supplement id selectedServing}} class='btn btn-default ladda-button pull-right' data-style="zoom-in" role='button'><span class="ladda-label">Add to diet</span></button>
+            </p>
+            <div style='clear:both;'></div>
+          </div>
+          <div class='pull-left' style='position: absolute; top: 5px;'> {{supplement.rating}}/10</div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+

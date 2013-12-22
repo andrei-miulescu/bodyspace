@@ -7,6 +7,7 @@
 #= require dropzone/dropzone
 #= require datepicker/datepicker
 #= require elastislide/jquery.elastislide
+#= require ladda/ladda
 #= require handlebars
 #= require ember
 #= require ember-data
