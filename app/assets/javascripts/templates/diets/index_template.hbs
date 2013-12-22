@@ -1,0 +1,22 @@
+<div class="page-header">
+  {{#linkTo 'diets.new' class="pull-right"}}<button class="btn btn-default">New diet</button>{{/linkTo}}
+  <h1>Diets</h1>
+</div>
+
+<div class="row">
+  {{#each model}}
+    {{#link-to 'diet' id}}
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail-noconflict">
+          <h3> {{title}} <span class="label label-default">{{supplementCount}} supplements</span></h3>
+          <p>
+              {{#linkTo 'diet' id}}<button class="btn btn-default">Edit diet</button>{{/linkTo}}
+          </p>
+        </div>
+      </div>
+    {{/link-to}}
+  {{/each}}
+</div>
+
+
+

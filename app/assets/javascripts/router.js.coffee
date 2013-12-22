@@ -12,6 +12,15 @@ App.Router.map ->
     @route 'new'
     @route 'show'
     @resource 'timeline', {path: ':timeline_id'}
+
+  @resource 'diets', ->
+    @route 'new'
+    @resource 'diet', {path: ':diet_id'}
+
+  @resource 'supplements', ->
+    @route 'new'
+    @resource 'supplement', {path: ':supplement_id'}
+
   @route "home"
   @route "login"
   @route "logout"

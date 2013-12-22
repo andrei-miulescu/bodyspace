@@ -13,6 +13,7 @@
       <ul class="nav navbar-nav">
         {{#if isAuthenticated}}
           {{ view App.NavitemsTimelinesDropdownView }}
+          {{ view App.NavitemsDietsDropdownView }}
         {{else}}
           <li>{{view App.MenuItem href="#/login" label="Login" }}</li>
           <li>{{view App.MenuItem href="#/registration" label="Register"}}</li>

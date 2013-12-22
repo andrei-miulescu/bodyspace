@@ -5,6 +5,8 @@
 #= require bootstrap
 #= require timelineJS/embed
 #= require dropzone/dropzone
+#= require datepicker/datepicker
+#= require elastislide/jquery.elastislide
 #= require handlebars
 #= require ember
 #= require ember-data
