@@ -14,46 +14,16 @@
 <div class="tab-content">
   <div class="tab-pane active" id="supplements-tab">
     <div class="thumbnail-noconflict" style="border-top: none; min-height: 600px; border-radius: 0 0 4px 4px">
-      {{view App.SupplementsCarouselView }}
+      {{view App.SupplementsCarouselView  supplements="content.supplements"}}
 
-      <div class="container">
-        <h3>Add Supplements</h3>
-
-        <div class="container">
-          <div id="error-add-supplement"></div>
-          <div class="input-group col-lg-5 pull-right">
-            <input type="Search" placeholder="Search..." class="form-control" id="supplement-search-input"/>
-
-            <div class="input-group-btn">
-              <button class="btn btn-info" id="supplement-search-button">
-                <span class="glyphicon glyphicon-search"></span>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div id="supplement-search-results" class="container">
-          <div class="row" data-diet-id="{{id}}">
-          </div>
-        </div>
-      </div>
+      {{view App.SupplementsSearchResultsView }}
     </div>
   </div>
+
   <div class="tab-pane" id="nutritional">
     <div class="thumbnail-noconflict" style="border-top: none; min-height: 600px; border-radius: 0 0 4px 4px">
-
       <h3>Nutritional Information</h3>
-      <!--<table class="table">-->
-        <!--<tr><th>Name</th><th>Qty</th><th>%RDI</th></tr>-->
-        <!--<%- @nutritional_info.each do |key, value|%>-->
-        <!--<tr>-->
-          <!--<td><%= key %> </td>-->
-          <!--<td><%= value[:qty] %></td>-->
-          <!--<td><%= value[:rdi] %></td>-->
-        <!--</tr>-->
-        <!--<%- end %>-->
-      <!--</table>-->
 
     </div>
-
   </div>
 </div>

@@ -1,4 +1,4 @@
-App.TimelinesNewController = Ember.ObjectController.extend
+App.DietsNewController = Ember.ObjectController.extend
 
   newRecord: ->
     @set('content', App.Diet.createRecord())

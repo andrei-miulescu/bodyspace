@@ -1,10 +1,28 @@
-App.ComponentsDatePickerField =  Ember.View.extend
-  tagName: 'input'
-  classNames: ['datepicker']
+App.ComponentsDatePickerField =  Em.TextField.extend
+  tagName: "input"
+  date: null
+  attributeBindings: ['value','format','readonly','type','size']
+  size:"16"
+  type: "text"
+  format:'dd/mm/yyyy'
 
-#  templateName: 'components/datepicker'
+  value: ( ->
+    if date = @get('date')
+      date
+    else
+      ""
+  ).property('date')
+
   didInsertElement: ->
-    $(@.$()).datepicker
-      format: "dd/mm/yyyy",
-      todayBtn: "linked",
+    fmt = @get('format')
+
+    onChangeDate = (ev) =>
+      @set 'date', ev.date
+
+    @.$().datepicker(
+      format: fmt,
       autoclose: true
+    ).on('changeDate', onChangeDate)
+
+  willDestroyElement: -> @$().datepicker('remove')
+

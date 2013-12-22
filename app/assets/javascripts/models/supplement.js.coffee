@@ -3,3 +3,7 @@ App.Supplement  = DS.Model.extend
 
   title: DS.attr('string')
   imageUrl: DS.attr('string')
+
+  formattedTitle: (->
+    @.get('title').substring(0, 27)
+  ).property('title')

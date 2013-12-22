@@ -1,4 +1,4 @@
-App.TimelinesNewRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
+App.DietsNewRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
 
   setupController: ->
     @controller.newRecord()

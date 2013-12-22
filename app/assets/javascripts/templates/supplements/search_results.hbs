@@ -1,0 +1,11 @@
+<h3>Add Supplements</h3>
+<div class="container">
+  <div class="input-group col-lg-5 pull-right">
+    {{view Ember.TextField valueBinding="searchTerm" placeholder="Search..." class="form-control"}}
+
+    <div class="input-group-btn">
+      <button {{action 'searchSupplements' searchTerm}} type="submit" class="btn btn-info">
+        <span class="glyphicon glyphicon-search"></span></button>
+    </div>
+  </div>
+</div>

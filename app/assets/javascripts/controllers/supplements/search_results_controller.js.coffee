@@ -1,0 +1,1 @@
+App.SupplementsSearchResultsController = Ember.ArrayController.extend {}

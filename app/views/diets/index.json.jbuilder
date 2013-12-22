@@ -5,9 +5,7 @@ json.set! :diets do
   end
 end
 json.set! :supplements do
-  @diets.each do |diet|
-    json.array! (diet.supplements) do |supplement|
-      json.extract! supplement, :id, :title, :image_url
-    end
+  json.array! (@diets.collect(&:supplements).flatten) do |supplement|
+    json.extract! supplement, :id, :title, :image_url
   end
 end

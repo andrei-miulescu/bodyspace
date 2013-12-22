@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Bodyspace::Application.routes.draw do
+  get 'search_supplements', to: 'search_supplements#search'
   use_doorkeeper
   resources :supplements
 
@@ -23,7 +24,6 @@ Bodyspace::Application.routes.draw do
     mount Sidekiq::Web.new, at: '/sidekiq'
   end
 
-  get '/sups', to: 'diets#search_supplement'
   get '/t/:id.json',  to: 'timelines#with_posts'
 
 end
