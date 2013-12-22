@@ -22,10 +22,10 @@
                 content=servings
                 optionValuePath="content.value"
                 optionLabelPath="content.title"
-                selection=selectedServing
+                selection=supplement.selectedServing
                 class="servings-select form-control pull-left"
               }}
-              <button {{action 'addToDiet' supplement id selectedServing}} class='btn btn-default ladda-button pull-right' data-style="zoom-in" role='button'><span class="ladda-label">Add to diet</span></button>
+              <button {{action 'addToDiet' supplement}} class='btn btn-default ladda-button pull-right' data-style="zoom-in" role='button'><span class="ladda-label">Add to diet</span></button>
             </p>
             <div style='clear:both;'></div>
           </div>

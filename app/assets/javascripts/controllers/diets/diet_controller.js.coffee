@@ -3,8 +3,6 @@ App.DietController = Ember.ObjectController.extend
   user: Em.computed.alias "session.currentUser"
   supplementResults: null
 
-  selectedServing: null
-
   servings: (->
     array = []
     for i in [1..10]

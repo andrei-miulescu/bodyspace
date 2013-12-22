@@ -24,7 +24,7 @@ class SupplementsController < ApplicationController
   # POST /supplements
   # POST /supplements.json
   def create
-    @supplement = create_mechanize_supplement(params[:url_diet], params[:diet_id], params[:serving]) if params[:url_diet]
+    @supplement = create_mechanize_supplement(supplement_params[:url_diet], supplement_params[:diet_id], supplement_params[:serving]) if supplement_params[:url_diet]
     respond_to do |format|
       if @supplement.persisted?
         format.html { redirect_to @supplement, notice: 'Supplement was successfully created.' }
@@ -67,9 +67,10 @@ class SupplementsController < ApplicationController
     @supplement = Supplement.includes(:nutritional_items).find(params[:id])
   end
 
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def supplement_params
-    params.require(:supplement).permit(:serving)
+    params.require(:supplement).permit(:serving, :title, :url_diet, :diet_id, :image_url)
   end
 
   def create_mechanize_supplement(url, diet_id, serving)

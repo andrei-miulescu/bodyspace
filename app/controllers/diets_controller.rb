@@ -1,6 +1,5 @@
 class DietsController < ApplicationController
   before_action :set_diet, only: [:show, :edit, :update, :destroy]
-  before_action :set_nutritional_info, only: [:show]
   # GET /diets
   # GET /diets.json
   def index
