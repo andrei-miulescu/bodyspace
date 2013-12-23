@@ -10,8 +10,6 @@ class ApplicationController < ActionController::Base
 
   respond_to :html, :json
 
-  helper_method :current_user_json
-
   before_filter :update_sanitized_params, if: :devise_controller?
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -20,14 +18,6 @@ class ApplicationController < ActionController::Base
 
   def current_resource_owner
     User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
-  end
-
-  def current_user_json
-    if current_user
-      UserSerializer.new(current_user, :scope => current_user, :root => false).to_json
-    else
-      {}.to_json
-    end
   end
 
   def me

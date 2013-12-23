@@ -3,6 +3,7 @@ App.Supplement  = DS.Model.extend
 
   title: DS.attr('string')
   imageUrl: DS.attr('string')
+  url: DS.attr('string')
   urlDiet: DS.attr('string')
   serving: DS.attr('number')
 

@@ -4,7 +4,12 @@
 </div>
 
 <div class="container">
-  <div class="col-sm-2 thumbnail-noconflict"><img {{bindAttr src="imageUrl"}}/></div>
+  <div class="col-sm-2 thumbnail-noconflict">
+    <img {{bindAttr src="imageUrl"}}/>
+    <div class="label label-default">
+      {{serving}} servings
+    </div>
+  </div>
   <div class="sol-sm-10">
     {{#each nutritionalItems}}
 
