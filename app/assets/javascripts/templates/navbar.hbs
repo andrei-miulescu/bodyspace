@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      {{#linkTo 'home' class='navbar-brand'}}Bodyspace{{/linkTo}}
+      {{#link-to-animated 'home' class='navbar-brand' animations="main:flip"}}Bodyspace{{/link-to-animated}}
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
@@ -15,8 +15,8 @@
           {{ view App.NavitemsTimelinesDropdownView }}
           {{ view App.NavitemsDietsDropdownView }}
         {{else}}
-          <li>{{view App.MenuItem href="#/login" label="Login" }}</li>
-          <li>{{view App.MenuItem href="#/registration" label="Register"}}</li>
+          <li>{{#link-to-animated 'login' animations="main:flip"}}Login{{/link-to-animated}}</li>
+          <li>{{#link-to-animated 'registration' animations="main:flip"}}Register{{/link-to-animated}}</li>
         {{/if}}
       </ul>
       {{#if isAuthenticated}}

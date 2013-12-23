@@ -30,4 +30,4 @@ App.Router.map ->
 
 App.IndexRoute = Ember.Route.extend
   beforeModel: (transition) ->
-    @transitionTo 'home'
+    @transitionToAnimated 'home', main: 'fade'

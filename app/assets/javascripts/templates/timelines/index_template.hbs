@@ -1,14 +1,14 @@
 <div class="page-header">
-  {{#linkTo 'timelines.new' class="pull-right"}}
+  {{#link-to-animated 'timelines.new' class="pull-right" animations="main:flip"}}
     <button class="btn btn-default">New timeline</button>
-  {{/linkTo}}
+  {{/link-to-animated}}
   <h1>Timelines</h1>
 </div>
 <div class="container">
   <div class="row">
     {{#each model}}
     <div class="col-sm-4" style="margin-top: 10px">
-      {{#link-to 'timeline' id}}
+      {{#link-to-animated 'timeline' id animations="main:fade"}}
           <div class="thumbnail-noconflict">
             <div class="image-container">
               <img {{bindAttr src="image"}} alt="{{caption}}" height="150" width="300"/>
@@ -16,13 +16,13 @@
             <h3> {{headline}} <span class="label label-default">{{postsCount}} posts</span></h3>
 
             <p>
-              {{#linkTo 'posts.new' id class="pull-right"}}
+              {{#link-to-animated 'posts.new' id class="pull-right" animations="main:flip"}}
                 <button class="btn btn-default">New post</button>
-              {{/linkTo}}
+              {{/link-to-animated}}
             </p>
             <div style="clear:both"></div>
           </div>
-      {{/link-to}}
+      {{/link-to-animated}}
     </div>
     {{/each}}
   </div>

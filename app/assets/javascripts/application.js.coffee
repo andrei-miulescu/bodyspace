@@ -12,6 +12,7 @@
 #= require ember
 #= require ember-data
 #= require ember-simple-auth
+#= require ember-animated-outlet
 #= require_self
 #= require bodyspace
 #= require_tree .

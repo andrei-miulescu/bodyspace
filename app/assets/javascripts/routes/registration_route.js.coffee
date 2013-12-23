@@ -16,8 +16,8 @@ App.RegistrationRoute = Ember.Route.extend
           "user[password_confirmation]": @currentModel.password_confirmation
         success: (data) =>
           @controllerFor('auth').set 'currentUser', data.user
-          @transitionTo 'home'
+          @transitionToAnimated 'home', main: 'fade'
         error: (jqXHR, textStatus, errorThrown) =>
           @controllerFor('registration').set "errorMsg", jqXHR.responseText
       cancel: ->
-        @transitionTo 'home'
+        @transitionToAnimated 'home', main: 'fade'
