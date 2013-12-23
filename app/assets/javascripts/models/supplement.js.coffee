@@ -7,7 +7,3 @@ App.Supplement  = DS.Model.extend
   serving: DS.attr('number')
 
   dietId: DS.attr('string')
-
-  formattedTitle: (->
-    @.get('title').substring(0, 27)
-  ).property('title')

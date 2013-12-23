@@ -5,5 +5,6 @@
 #= require_tree ./views
 #= require_tree ./templates
 #= require_tree ./routes
+#= require_tree ./extensions
 #= require ./router
 #= require_self

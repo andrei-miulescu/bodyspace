@@ -17,7 +17,7 @@ App.DietRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
       newRecord = App.Supplement.createRecord({title: title, urlDiet: url, imageUrl: imageUrl, serving: serving, dietId: @controller.get('model').id})
       @get('store').commit()
 
-      @transitionTo 'home'
+      @transitionTo 'diets'
 )
 
 #newRecord = {supplement: {title: title, url_diet: url, image_url: imageUrl, serving: serving, diet_id: @controller.get('model').id}}

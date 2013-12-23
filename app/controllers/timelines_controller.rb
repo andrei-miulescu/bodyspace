@@ -1,13 +1,13 @@
 class TimelinesController < ApplicationController
   before_action :set_timeline, only: [:show, :edit, :update, :destroy]
-
+  skip_before_filter :verify_authenticity_token, only: [:create_with_image]
   # GET /timelines
   # GET /timelines.json
   def index
     if params[:user_id]
-      @timelines = Timeline.valid_timelines.where(:user_id => params[:user_id])
+      @timelines = Timeline.includes(:posts).valid_timelines.where(:user_id => params[:user_id])
     else
-      @timelines = Timeline.valid_timelines.all
+      @timelines = Timeline.includes(:posts).valid_timelines.all
     end
   end
 
