@@ -24,7 +24,7 @@ App.TimelinesWidgetView = Ember.View.extend
       type: "timeline"
       width: "100%"
       height: height
-      source: "/api/t/#{id}.json"
+      source: "/t/#{id}.json"
       embed_id: "timeline"
       ajax_timeout: 6000
 

@@ -23,11 +23,9 @@ Bodyspace::Application.routes.draw do
 
     mount Sidekiq::Web.new, at: '/sidekiq'
   end
-
-<<<<<<< HEAD
-  get '*path' => 'home#ember'
-=======
   get '/t/:id.json',  to: 'timelines#with_posts'
->>>>>>> parent of e4d5bda... namespacing under api now
+
+  get '*path' => 'home#ember'
+
 
 end
