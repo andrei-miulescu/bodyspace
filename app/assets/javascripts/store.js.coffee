@@ -16,9 +16,9 @@ Ember.RSVP.configure "onerror", (e) ->
     )
     for cookieName in cookieNames
       $.removeCookie(cookieName)
-    window.location.hash = '#login'
+    App.__container__.lookup('router:main').transitionToAnimated('login', {main: 'flip'})
   else
-    window.location.hash = '#error'
+    App.__container__.lookup('router:main').transitionToAnimated('home', {main: 'flip'})
 
 App.Store = DS.Store.extend
   revision: 11
