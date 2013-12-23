@@ -1,12 +1,8 @@
 # http://emberjs.com/guides/models/using-the-store/
 
-DS.RESTAdapter.map "App.Timeline",
-  asset:
-    embedded: "always"
-
-DS.RESTAdapter.map "App.Post",
-  asset:
-    embedded: "always"
+DS.RESTAdapter.reopen({
+  url: '/api'
+});
 
 Ember.RSVP.configure "onerror", (e) ->
   if e.status == 401
