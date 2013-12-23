@@ -13,6 +13,9 @@ App.TimelinesWidgetView = Ember.View.extend
   didInsertElement: ->
     @_buildTimeline()
 
+  willDestroy: ->
+    $('#timeline').empty()
+
   _buildTimeline:   ->
     id = this.content.get('id')
     $('#timeline').empty()

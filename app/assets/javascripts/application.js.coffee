@@ -3,10 +3,11 @@
 #= require underscore
 #= require jquery.cookie
 #= require bootstrap
+#= require ladda/spin
+#= require ladda/ladda
 #= require timelineJS/embed
 #= require dropzone/dropzone
 #= require datepicker/datepicker
-#= require ladda/ladda
 #= require handlebars
 #= require ember
 #= require ember-data

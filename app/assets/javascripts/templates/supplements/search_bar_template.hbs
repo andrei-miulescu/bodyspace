@@ -1,0 +1,8 @@
+<form class="input-group" {{action 'searchSupplements' searchTerm on="submit"}} >
+  {{view Ember.TextField valueBinding="searchTerm" placeholder="Search..." class="form-control"}}
+
+  <div class="input-group-btn">
+    <button type="submit" class="btn btn-info ladda-button" data-style="zoom-in">
+      <span class="ladda-label glyphicon glyphicon-search"></span></button>
+  </div>
+</form>

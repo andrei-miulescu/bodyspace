@@ -7,7 +7,7 @@ App.DietRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
         searchSupplements = response.supplements
 
         @controller.set('supplementResults', searchSupplements)
-        @controller.set('spinnerClass', 'hidden')
+        Ladda.stopAll()
 
     addToDiet: (supplement) ->
       serving = supplement.selectedServing.value

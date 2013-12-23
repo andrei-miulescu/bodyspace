@@ -1,14 +1,9 @@
 
-<div class="container">
-  <h3 class="">
+<div class="row">
+  <h3>
   <span class="col-lg-4">Add Supplements</span>
-  <span class="input-group col-lg-5">
-    {{view Ember.TextField valueBinding="searchTerm" placeholder="Search..." class="form-control"}}
-
-    <div class="input-group-btn">
-      <button {{action 'searchSupplements' searchTerm}} type="submit" class="btn btn-info">
-        <span class="glyphicon glyphicon-search"></span></button>
-    </div>
+  <span class="col-lg-5">
+    {{view App.SupplementsSearchBarView }}
   </span>
 
   </h3>
@@ -36,6 +31,8 @@
         </div>
         <div class='pull-left' style='position: absolute; top: 5px;'> {{supplement.rating}}/10</div>
       </li>
+    {{else}}
+      <div class="spinner hidden"></div>
     {{/each}}
   </ul>
 </div>
