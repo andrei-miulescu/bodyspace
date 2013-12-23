@@ -1,0 +1,78 @@
+<div class="page-header">
+  <%= link_to :back, :class => 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-arrow-left"></span>
+    Back
+  <% end %>
+  <%= link_to edit_diet_path(@diet), :class => 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1><%= @diet.title %></h1>
+</div>
+
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#supplements" data-toggle="tab">Supplements
+    <span id="supplement-count" class="label label-default"><%= @diet.supplements.count %></span></a></li>
+  <li><a href="#nutritional" data-toggle="tab">Nutritional Info <span id="nutrition-count" class="label label-default"><%= @nutritional_info.size %></span></a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="supplements">
+    <div class="thumbnail" style="border-top: none; min-height: 600px; border-radius: 0 0 4px 4px">
+      <div class="container" style="margin-top: 20px;">
+        <ul id="carousel" class="elastislide-list">
+          <%- @diet.supplements.each do |supplement| %>
+            <li style="border: 1px solid #dddddd; border-radius: 4px; margin-left: 10px;">
+              <%= link_to supplement_path(supplement) do %>
+                <%= image_tag(supplement.image_url, style: 'height: 150px; width: 100px; margin: 0px 50px 30px 50px; ') %>
+                <p style="position: absolute; bottom: 0px; margin-left: 5px; font-size: 90%;"><%= supplement.title.truncate(29) %></p>
+              <%- end %>
+            </li>
+          <%- end %>
+        </ul>
+      </div>
+      <div class="container">
+        <h3>Add Supplements</h3>
+
+        <div class="container">
+          <div id="error-add-supplement"></div>
+          <div class="input-group col-lg-5 pull-right">
+            <input type="Search" placeholder="Search..." class="form-control" id="supplement-search-input"/>
+
+            <div class="input-group-btn">
+              <button class="btn btn-info" id="supplement-search-button">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="supplement-search-results" class="container">
+          <div class="row" data-diet-id="<%= @diet.id %>">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane" id="nutritional">
+    <div class="thumbnail" style="border-top: none; min-height: 600px; border-radius: 0 0 4px 4px">
+
+        <h3>Nutritional Information</h3>
+        <table class="table">
+          <tr><th>Name</th><th>Qty</th><th>%RDI</th></tr>
+          <%- @nutritional_info.each do |key, value|%>
+            <tr>
+              <td><%= key %> </td>
+              <td><%= value[:qty] %></td>
+              <td><%= value[:rdi] %></td>
+            </tr>
+          <%- end %>
+        </table>
+
+    </div>
+
+  </div>
+</div>
+
+
+

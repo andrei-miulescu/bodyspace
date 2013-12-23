@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
 
-  PUBLIC_ENDPOINTS = [{controller: 'timelines', action: 'create_with_image'}, {controller: 'posts', action: 'create_with_image'}]
+  PUBLIC_ENDPOINTS = [{ controller: 'timelines', action: 'create_with_image'}, { controller: 'posts', action: 'create_with_image'}]
 
-  doorkeeper_for :all, :if => lambda { request.xhr? && !PUBLIC_ENDPOINTS.any? { |e| e[:controller] == controller_name && e[:action] == action_name } }
+  doorkeeper_for :all, :if => lambda { request.xhr? && !PUBLIC_ENDPOINTS.any? { |e| e[:controller] == controller_name && e[:action] == action_name }}
   before_filter :authenticate_user!
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def update_sanitized_params
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation) }
+    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:name, :email, :password, :password_confirmation)}
   end
 
 end
