@@ -28,4 +28,6 @@ Bodyspace::Application.routes.draw do
     get '/t/:id.json', to: 'timelines#with_posts'
   end
 
+  get '*path' => 'home#ember'
+
 end
