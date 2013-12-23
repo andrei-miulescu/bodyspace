@@ -6,5 +6,5 @@ App.DietsNewRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
   actions:
     save: ->
       @get('store').commit()
-      @transitionToAnimated 'diets.index', main: 'fade'
+      @transitionToAnimated 'diets.index', main: 'flip'
 )

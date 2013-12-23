@@ -1,4 +1,5 @@
 <div class="page-header">
+  <button {{action goBack}} class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back</button>
   {{#link-to-animated 'timelines.new' class="pull-right" animations="main:flip"}}
     <button class="btn btn-default">New timeline</button>
   {{/link-to-animated}}
@@ -11,7 +12,7 @@
       {{#link-to-animated 'timeline' id animations="main:fade"}}
           <div class="thumbnail-noconflict">
             <div class="image-container">
-              <img {{bindAttr src="image"}} alt="{{caption}}" height="150" width="300"/>
+              <img {{bindAttr src="image"}} alt="{{caption}}" style="height: 400px; width: 300px;"/>
             </div>
             <h3> {{headline}} <span class="label label-default">{{postsCount}} posts</span></h3>
 

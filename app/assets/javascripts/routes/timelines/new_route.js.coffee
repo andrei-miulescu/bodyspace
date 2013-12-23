@@ -7,5 +7,5 @@ App.TimelinesNewRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMi
     save: ->
       @controller.setRecordId($('#image-upload-result').val())
       @get('store').commit()
-      @transitionToAnimated 'timelines.index', main: 'fade'
+      @transitionToAnimated 'timelines.index', main: 'flip'
 )
