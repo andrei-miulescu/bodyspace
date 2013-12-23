@@ -1,12 +1,8 @@
 App.DietRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
   actions:
     searchSupplements: (query) ->
-      @controller.set('spinnerClass', '')
-      searchSupplements = []
       $.ajax(url: "/search_supplements?q=#{query}").then (response) =>
-        searchSupplements = response.supplements
-
-        @controller.set('supplementResults', searchSupplements)
+        @controller.set('supplementResults', response.supplements)
         Ladda.stopAll()
 
     addToDiet: (supplement) ->
