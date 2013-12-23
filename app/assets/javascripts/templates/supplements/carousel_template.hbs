@@ -4,11 +4,11 @@
     <ul class="row">
       {{#each supplements}}
         <li class="col-sm-2 thumbnail-noconflict" style="margin: 3px">
-          {{#linkTo 'supplement' id}}
+          {{#link-to-animated 'supplement' id animations="main:flip"}}
             <img {{bindAttr src="imageUrl"}} style='height: 130px; width: 100px;'/>
 
             <p>{{title}}</p>
-          {{/linkTo}}
+          {{/link-to-animated}}
         </li>
       {{else}}
         <h4>No supplements found. Try searching for some to add.</h4>

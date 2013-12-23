@@ -1,0 +1,16 @@
+<div class="page-header">
+  <button {{action goBack}} class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back</button>
+  <h1>{{title}}</h1>
+</div>
+
+<div class="container">
+  <div class="col-sm-2 thumbnail-noconflict"><img {{bindAttr src="imageUrl"}}/></div>
+  <div class="sol-sm-10">
+    {{#each nutritionalItems}}
+
+      {{name}}
+
+    {{/each}}
+
+  </div>
+</div>

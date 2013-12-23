@@ -7,3 +7,5 @@ App.Supplement  = DS.Model.extend
   serving: DS.attr('number')
 
   dietId: DS.attr('string')
+
+  nutritionalItems: DS.hasMany('App.NutritionalItem')

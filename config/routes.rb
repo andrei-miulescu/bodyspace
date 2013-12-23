@@ -9,6 +9,8 @@ Bodyspace::Application.routes.draw do
 
   resources :timelines
 
+  resources :nutritional_items
+
   resources :posts
 
   match 'posts/create_with_image', to: 'posts#create_with_image', via: [:put, :post]
@@ -20,7 +22,6 @@ Bodyspace::Application.routes.draw do
 
 
   authenticate :user do
-
     mount Sidekiq::Web.new, at: '/sidekiq'
   end
   get '/t/:id.json',  to: 'timelines#with_posts'
