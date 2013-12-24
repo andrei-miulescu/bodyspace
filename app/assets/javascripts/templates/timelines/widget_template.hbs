@@ -1,31 +1,21 @@
-<div id="timeline" class="mobile">
-
+<div id="timeline" class="container" style="padding-bottom: 100px">
   <div class="timeline dual" style="width: 100%">
     <div class="spine animated"></div>
-
-    {{#each postsByMonth}}
-
-      <div class="date_separator animated" id="timeline_date_separator_{{month}}"><span>{{month}}</span></div>
-
-      {{#each post in groupedPosts}}
-
-        <div {{bindAttr class="post.uiSide"}}>
+      <!--<div class="date_separator animated" id="timeline_date_separator"><span>All posts</span></div>-->
+      {{#each sortedPosts}}
+        <div class="column">
           <div class="timeline_element blog_post animated" style="width: 90%">
-            <div class="title">{{post.headline}}<span class="label"></span><span class="date">{{post.startDate}}</span>
+            <div class="title">{{headline}} - Weight {{caption}} kg<span class="date">{{formattedStartDate}}</span>
             </div>
-            <div class="img_container"><img {{bindAttr src="post.image"}}/>
+            <div class="img_container"><img {{bindAttr src="image"}} style="height: 600px; width: 510px;"/>
 
               <div class="img_overlay"></div>
             </div>
-            <div class="content">{{post.text}}
+            <div class="content">{{text}}
             </div>
-            <!--<div class="readmore"><a href="http://www.manutd.com">Read More</a></div>-->
+            <!--<div class="readmore"></div>-->
           </div>
         </div>
-        {{#if post.clearBoth}}
-          <div style="clear:both"></div>
-        {{/if}}
       {{/each}}
-    {{/each}}
   </div>
 </div>

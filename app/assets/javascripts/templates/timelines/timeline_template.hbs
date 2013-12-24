@@ -1,8 +1,8 @@
-<button {{action goBack}} class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back</button>
-<div class="pull-right">
-    {{#link-to-animated 'posts.new' controller.content.id animations="main:flip"}}<button class="btn btn-default">New post</button>{{/link-to-animated}}
+<div class="page-header">
+  <button {{action goBack}} class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back</button>
+    {{#link-to-animated 'posts.new' controller.content.id animations="main:flip" class="pull-right"}}<button class="btn btn-default">New post</button>{{/link-to-animated}}
+  <h1>{{headline}}</h1>
 </div>
 
-<div class="container">
+
   {{ view App.TimelinesWidgetView id="timeline" contentBinding="controller.content" }}
-</div>
