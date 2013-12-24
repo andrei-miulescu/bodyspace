@@ -8,5 +8,6 @@ json.set! :supplements do
   json.array! (@diets.collect(&:supplements).flatten) do |supplement|
     json.extract! supplement, :id, :title, :image_url
     json.nutritional_item_ids supplement.nutritional_items.collect(&:id)
+    json.diet_id supplement.diet.id
   end
 end

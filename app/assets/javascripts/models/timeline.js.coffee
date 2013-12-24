@@ -4,4 +4,8 @@ App.Timeline  = DS.Model.extend
   text: DS.attr('string')
   image: DS.attr('string')
   caption: DS.attr('string')
+  thumb: DS.attr('string')
+
   postsCount: DS.attr('number')
+
+  posts: DS.hasMany('App.Post')

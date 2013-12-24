@@ -10,10 +10,9 @@ App.DietRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
       url = supplement.url
       title = supplement.title
       imageUrl = supplement.image_url
-      newRecord = App.Supplement.createRecord({title: title, urlDiet: url, imageUrl: imageUrl, serving: serving, dietId: @controller.get('model').id})
+      newRecord = App.Supplement.createRecord({title: title, urlDiet: url, imageUrl: imageUrl, serving: serving, diet: @controller.get('model')})
       @get('store').commit()
 
-      @transitionToAnimated 'diets', main: 'flip'
 )
 
 #newRecord = {supplement: {title: title, url_diet: url, image_url: imageUrl, serving: serving, diet_id: @controller.get('model').id}}

@@ -12,6 +12,18 @@ Ember.RSVP.configure "onerror", (e) ->
   else
     App.__container__.lookup('router:main').transitionToAnimated('home', {main: 'flip'})
 
+#DS.JSONTransforms.isodate =
+#  deserialize: (serialized) ->
+#    if serialized
+#      date = new Date(serialized)
+#      offset = date.getTimezoneOffset()
+#      new Date(date.getTime()+offset*60000)
+#    else
+#      null
+#
+#  serialize: (date) ->
+#    if date then moment(date).format("YYYY-MM-DD") else null
+
 App.Store = DS.Store.extend
   revision: 11
   adapter: DS.RESTAdapter.extend

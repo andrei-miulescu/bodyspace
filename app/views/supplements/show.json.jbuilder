@@ -6,5 +6,6 @@ json.set! :nutritional_items do
   json.array! @supplement.nutritional_items do |ni|
     json.extract! ni, :id, :quantity, :rdi
     json.name ni.ingredient.name
+    json.supplement_id ni.supplement.id
   end
 end

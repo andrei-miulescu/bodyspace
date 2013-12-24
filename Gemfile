@@ -17,6 +17,8 @@ gem 'jquery-rails'
 gem 'timelineJS-rails', github: 'andrei-miulescu/timelineJS-rails', ref: '64dfef89e8f02a3a10e240e6e1726f4a1579d3fc'
 gem 'bootstrap-generators', '~> 3.0'
 gem 'underscore-rails'
+
+gem 'momentjs-rails'
 #ember
 
 gem 'ember-rails'
