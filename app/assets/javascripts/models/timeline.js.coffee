@@ -8,11 +8,13 @@ App.Timeline  = DS.Model.extend
 
   postsCount: DS.attr('number')
 
-  posts: DS.hasMany('App.Post')
+  posts: DS.hasMany('App.Post', {async: true})
 
 
   postsByMonth: (->
     posts = @get('posts').content
+    posts = posts.sortBy (o)->
+               - o.start_date
     results = []
     resultsHash = {}
     index = 0
@@ -33,6 +35,5 @@ App.Timeline  = DS.Model.extend
     results = for monthYear, posts of resultsHash
                 {month: monthYear, groupedPosts: posts}
 
-    log.info results
     results
   ).property('posts')

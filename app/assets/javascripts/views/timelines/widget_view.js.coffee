@@ -1,5 +1,14 @@
 App.TimelinesWidgetView = Ember.View.extend
   templateName: 'timelines/widget_template'
+
+  myPropertyChanged: (->
+      log.info 'changed'
+      @rerender()
+  ).observes('controllers.diet.content.posts')
+
+
+
+
 #  tagName: 'div'
 #  classNames: ["timeline"]
 #
