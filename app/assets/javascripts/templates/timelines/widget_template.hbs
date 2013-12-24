@@ -1,32 +1,31 @@
-<div class="timeline dual" style="width: 100%">
-  <div class="spine animated"></div>
+<div id="timeline" class="mobile">
 
-  {{#each postsByMonth}}
+  <div class="timeline dual" style="width: 100%">
+    <div class="spine animated"></div>
 
-    <div class="date_separator animated" id="timeline_date_separator_{{month}}"><span>{{month}}</span></div>
+    {{#each postsByMonth}}
 
-    {{#each post in groupedPosts}}
+      <div class="date_separator animated" id="timeline_date_separator_{{month}}"><span>{{month}}</span></div>
 
-      <div {{bindAttr class="post.uiSide"}}>
-        <div class="timeline_element blog_post animated" style="width: 90%">
-          <div class="title"><span class="label">{{post.headline}}</span><span class="date">{{post.startDate}}</span></div>
-          <div class="img_container"><img {{bindAttr src="post.image"}}/>
+      {{#each post in groupedPosts}}
 
-            <div class="img_overlay"></div>
+        <div {{bindAttr class="post.uiSide"}}>
+          <div class="timeline_element blog_post animated" style="width: 90%">
+            <div class="title">{{post.headline}}<span class="label"></span><span class="date">{{post.startDate}}</span>
+            </div>
+            <div class="img_container"><img {{bindAttr src="post.image"}}/>
+
+              <div class="img_overlay"></div>
+            </div>
+            <div class="content">{{post.text}}
+            </div>
+            <!--<div class="readmore"><a href="http://www.manutd.com">Read More</a></div>-->
           </div>
-          <div class="content">{{post.text}}
-          </div>
-          <!--<div class="readmore"><a href="http://www.manutd.com">Read More</a></div>-->
         </div>
-      </div>
-
-    {{#if post.clearBoth}}
-      <div style="clear:both"></div>
-    {{/if}}
-
-
+        {{#if post.clearBoth}}
+          <div style="clear:both"></div>
+        {{/if}}
+      {{/each}}
     {{/each}}
-
-  {{/each}}
-
+  </div>
 </div>

@@ -23,9 +23,9 @@ App.Timeline  = DS.Model.extend
       post.data.startDate = moment(post.data.start_date).format('DD MMM YYYY')
       if index % 2 == 0
         post.data.clearBoth = false
-        post.data.uiSide = 'column column_right'
+        post.data.uiSide = 'column column_left'
       else
-        post.data.uiSide ='column column_left'
+        post.data.uiSide ='column column_right'
         post.data.clearBoth = true
       resultsHash[monthYear].pushObject(post.data)
       index += 1
