@@ -1,6 +1,5 @@
 class TimelinesController < ApplicationController
   before_action :set_timeline, only: [:show, :edit, :update, :destroy]
-  skip_before_filter :verify_authenticity_token, only: [:create_with_image]
   # GET /timelines
   # GET /timelines.json
   def index
