@@ -2,9 +2,8 @@ require 'sidekiq/web'
 
 Bodyspace::Application.routes.draw do
   root :to => 'home#ember'
-  authenticate :user do
-    mount Sidekiq::Web.new, at: '/sidekiq'
-  end
+
+  mount Sidekiq::Web.new, at: '/febb71cd8d87b737e6e8b049e2384b79/sidekiq'
 
   use_doorkeeper
 
