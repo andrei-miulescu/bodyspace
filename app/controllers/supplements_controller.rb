@@ -42,10 +42,8 @@ class SupplementsController < ApplicationController
   def update
     respond_to do |format|
       if @supplement.update(supplement_params)
-        format.html { redirect_to @supplement, notice: 'Supplement was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
         format.json { render json: @supplement.errors, status: :unprocessable_entity }
       end
     end
@@ -56,7 +54,6 @@ class SupplementsController < ApplicationController
   def destroy
     @supplement.destroy
     respond_to do |format|
-      format.html { redirect_to supplements_url }
       format.json { head :no_content }
     end
   end

@@ -6,8 +6,9 @@ Doorkeeper.configure do
   # This block will be called to check whether the resource owner is authenticated or not.
 
   resource_owner_from_credentials do |routes|
-    u = User.find_for_database_authentication(:email => params[:username])
-    u if u && u.valid_password?(params[:password])
+    request.params[:user] = {:email => request.params[:username], :password => request.params[:password]}
+    request.env["devise.allow_params_authentication"] = true
+    request.env["warden"].authenticate!(:scope => :user)
   end
 
   resource_owner_authenticator do

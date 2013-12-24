@@ -1,6 +1,6 @@
 <button {{action goBack}} class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back</button>
 <div class="pull-right">
-    {{#linkTo 'posts.new' controller.content.id}}<button class="btn btn-default">New post</button>{{/linkTo}}
+    {{#link-to-animated 'posts.new' controller.content.id animations="main:flip"}}<button class="btn btn-default">New post</button>{{/link-to-animated}}
 </div>
 
 <div class="container">

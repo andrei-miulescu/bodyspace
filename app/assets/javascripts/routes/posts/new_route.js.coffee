@@ -8,5 +8,5 @@ App.PostsNewRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
     save: ->
       @controller.setRecordId($('#image-upload-result').val())
       @get('store').commit()
-      @transitionToAnimated 'timeline', @controller.timeline.id, main: 'fade'
+      @transitionToAnimated 'timeline', main: 'fade', @controller.timeline.id
 )

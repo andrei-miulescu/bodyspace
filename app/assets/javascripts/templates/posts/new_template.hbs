@@ -1,5 +1,5 @@
 <div class="page-header">
-  <button {{action goBack}} class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back</button>
+  <button {{action goBack 'fade'}} class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back</button>
   <h1>New post for {{timeline.headline}}</h1>
 </div>
 {{#if errorMsg}}
@@ -8,7 +8,7 @@
   </div>
 {{/if}}
 
-{{view App.ComponentsUploadFileView action="api/posts/create_with_image" }}
+{{view App.ComponentsUploadFileView action="posts/create_with_image" }}
 <br/>
 
 <form {{action save on="submit"}} class="form-horizontal">

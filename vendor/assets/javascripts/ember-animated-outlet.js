@@ -342,6 +342,7 @@ Ember.Router.reopen({
     transitionToAnimated: function(name, animations, model) {
         Ember.AnimatedContainerView.enqueueAnimations(animations);
         Array.prototype.splice.call(arguments, 1, 1);
+        debugger
         return this.transitionTo.apply(this, arguments);
     },
 
