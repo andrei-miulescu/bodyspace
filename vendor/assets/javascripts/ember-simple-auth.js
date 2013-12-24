@@ -218,7 +218,7 @@ Ember.SimpleAuth.Session = Ember.Object.extend({
     user.name = this.get('userName')
     user.email = this.get('userEmail')
     return user
-  }),
+  }).property('userId', 'userName', 'userEmail'),
 
   /**
     Returns whether a user is currently authenticated.
@@ -241,7 +241,7 @@ Ember.SimpleAuth.Session = Ember.Object.extend({
       authTokenExpiry: this.load('authTokenExpiry'),
       userName:        this.load('userName'),
       userId:          this.load('userId'),
-      userEmail:        this.load('userEmail')
+      userEmail:       this.load('userEmail')
     });
     if (!Ember.testing) {
       Ember.run.cancel(Ember.SimpleAuth.Session._syncPropertiesTimeout);
