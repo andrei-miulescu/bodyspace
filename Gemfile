@@ -14,7 +14,6 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
-gem 'timelineJS-rails', github: 'andrei-miulescu/timelineJS-rails', ref: '64dfef89e8f02a3a10e240e6e1726f4a1579d3fc'
 gem 'bootstrap-generators', '~> 3.0'
 gem 'underscore-rails'
 

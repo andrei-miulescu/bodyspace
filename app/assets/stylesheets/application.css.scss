@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require timelineJS/timeline
+ *= require timeline/timeline
  *= require bootstrap
  *= require ladda/ladda
  *= require ember-animated-outlet

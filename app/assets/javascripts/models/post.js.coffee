@@ -10,3 +10,6 @@ App.Post  = DS.Model.extend
 
   timeline: DS.belongsTo('App.Timeline')
 
+  formattedStartDate: (->
+    moment(@get('date')).format('DD MMM YYYY')
+  ).property('startDate')

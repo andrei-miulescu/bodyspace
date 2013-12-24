@@ -5,7 +5,6 @@
 #= require bootstrap
 #= require ladda/spin
 #= require ladda/ladda
-#= require timelineJS/embed
 #= require dropzone/dropzone
 #= require datepicker/datepicker
 #= require handlebars

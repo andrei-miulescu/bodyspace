@@ -1,11 +1,3 @@
-GIT
-  remote: git://github.com/andrei-miulescu/timelineJS-rails.git
-  revision: 64dfef89e8f02a3a10e240e6e1726f4a1579d3fc
-  ref: 64dfef89e8f02a3a10e240e6e1726f4a1579d3fc
-  specs:
-    timelineJS-rails (1.1.1)
-      jquery-rails
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -325,7 +317,6 @@ DEPENDENCIES
   sidekiq (~> 2.17.1)
   sinatra
   thin
-  timelineJS-rails!
   uglifier (>= 1.3.0)
   underscore-rails
   unicorn
