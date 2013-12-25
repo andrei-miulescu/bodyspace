@@ -9,20 +9,7 @@ Ember.RSVP.configure "onerror", (e) ->
     for cookieName in cookieNames
       $.removeCookie(cookieName)
     App.__container__.lookup('router:main').transitionToAnimated('login', {main: 'flip'})
-  else
-    App.__container__.lookup('router:main').transitionToAnimated('home', {main: 'flip'})
 
-#DS.JSONTransforms.isodate =
-#  deserialize: (serialized) ->
-#    if serialized
-#      date = new Date(serialized)
-#      offset = date.getTimezoneOffset()
-#      new Date(date.getTime()+offset*60000)
-#    else
-#      null
-#
-#  serialize: (date) ->
-#    if date then moment(date).format("YYYY-MM-DD") else null
 
 App.Store = DS.Store.extend
   revision: 11
