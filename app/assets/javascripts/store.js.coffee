@@ -12,7 +12,7 @@ Ember.RSVP.configure "onerror", (e) ->
 
 
 App.Store = DS.Store.extend
-  revision: 11
+  revision: 12
   adapter: DS.RESTAdapter.extend
             buildURL: (record, suffix) ->
                @_super(record, suffix) + ".json"
