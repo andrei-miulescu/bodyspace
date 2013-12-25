@@ -13,6 +13,8 @@ App.Timeline  = DS.Model.extend
 
   sortedPosts: (->
     posts = @get("posts").toArray()
-    posts.sortBy (o)->
-      - o.startDate
+
+    sorted = posts.sort((a, b) ->
+        b.get("startDate") - a.get("startDate")
+    )
   ).property("posts.@each.isLoaded")
