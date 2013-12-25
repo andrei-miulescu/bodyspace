@@ -9,6 +9,3 @@ App.Supplement  = DS.Model.extend
 
   nutritionalItems: DS.hasMany('App.NutritionalItem')
 
-  nutritionalItemsCount: (->
-    @get('nutritionalItems.content').length
-  ).property('nutritionalItems.content')
