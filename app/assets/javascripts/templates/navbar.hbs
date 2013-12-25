@@ -14,6 +14,7 @@
         {{#if isAuthenticated}}
           {{ view App.NavitemsTimelinesDropdownView }}
           {{ view App.NavitemsDietsDropdownView }}
+          {{ view App.NavitemsWorkoutsDropdownView }}
         {{else}}
           <li>{{#link-to-animated 'login' animations="main:flip"}}Login{{/link-to-animated}}</li>
           <li>{{#link-to-animated 'registration' animations="main:flip"}}Register{{/link-to-animated}}</li>

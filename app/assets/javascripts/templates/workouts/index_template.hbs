@@ -1,0 +1,25 @@
+<div class="page-header">
+  <button {{action goBack}} class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back</button>
+  {{#link-to-animated 'workouts.new' class="pull-right" animations="main:flip"}}
+    <button class="btn btn-default">New workout</button>
+  {{/link-to-animated}}
+  <h1>Workouts</h1>
+</div>
+<div class="container">
+  <div class="row">
+    {{#each model}}
+      <div class="col-sm-4" style="margin-top: 10px">
+        {{#link-to-animated 'workout' this animations="main:flip"}}
+          <div class="thumbnail-noconflict">
+            <h3> {{name}} </h3>
+          </div>
+        {{/link-to-animated}}
+      </div>
+    {{else}}
+      <h3>No workouts create one.</h3>
+    {{/each}}
+  </div>
+</div>
+
+
+

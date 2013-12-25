@@ -1,5 +1,6 @@
-class SearchSupplementsController < ApplicationController
-  def search
+class SearchController < ApplicationController
+
+  def search_supplements
     q        = params[:q]
 
     base_url = 'http://www.bodybuilding.com'
@@ -26,6 +27,30 @@ class SearchSupplementsController < ApplicationController
 
     render json: {supplements: @resultHash}
   end
+
+  def search_exercises
+    q        = params[:q]
+
+    base_url = 'http://www.bodybuilding.com'
+    url      = "#{base_url}/exercises/main/getmatchingexercisenames/?q=#{q}&limit=150&timestamp=#{Time.now.to_i}&exerciseNameSearch=#{q}"
+    body    = mechanize.get(url).body
+
+    results = body.split('|')
+    array_results = []
+    to_delete_from_next = ''
+    exercise_url_base = 'http://www.bodybuilding.com/exercises/detail/view/name/'
+    results.each_with_index do |result, index|
+        json = {}
+        result.slice!(to_delete_from_next)
+        json[:name] = result.strip
+        to_delete_from_next = results[index+1].match(/([a-zA-Z-]+)/)[1] unless index+1 == results.size
+        json[:url] = exercise_url_base + to_delete_from_next
+        array_results << json unless index+1 == results.size
+    end
+    render json: {exercises: array_results}
+  end
+
+  private
 
   def mechanize
     @mechanize ||= Mechanize.new { |agent|

@@ -15,13 +15,17 @@ Bodyspace::Application.routes.draw do
 
   resources :timelines
 
+  resources :workouts
+
   resources :nutritional_items
 
   resources :posts
 
   resources :users
 
-  get 'search_supplements', to: 'search_supplements#search'
+  get 'search_supplements', to: 'search#search_supplements'
+
+  get 'search_exercises', to: 'search#search_exercises'
 
   match 'posts/create_with_image', to: 'posts#create_with_image', via: [:put, :post]
 

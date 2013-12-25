@@ -28,10 +28,8 @@ class DietsController < ApplicationController
 
     respond_to do |format|
       if @diet.save
-        format.html { redirect_to @diet, notice: 'Diet was successfully created.' }
         format.json { render action: 'show', status: :created, location: @diet }
       else
-        format.html { render action: 'new' }
         format.json { render json: @diet.errors, status: :unprocessable_entity }
       end
     end
@@ -42,17 +40,11 @@ class DietsController < ApplicationController
   def update
     respond_to do |format|
       if @diet.update(diet_params)
-        format.html { redirect_to @diet, notice: 'Diet was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
         format.json { render json: @diet.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def search_supplement
-
   end
 
   # DELETE /diets/1
@@ -60,7 +52,6 @@ class DietsController < ApplicationController
   def destroy
     @diet.destroy
     respond_to do |format|
-      format.html { redirect_to diets_url }
       format.json { head :no_content }
     end
   end
@@ -96,6 +87,5 @@ class DietsController < ApplicationController
 
     @nutritional_info = Hash[@nutritional_info.sort]
   end
-
 
 end
