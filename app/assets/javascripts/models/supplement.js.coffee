@@ -8,3 +8,7 @@ App.Supplement  = DS.Model.extend
   serving: DS.attr('number')
 
   nutritionalItems: DS.hasMany('App.NutritionalItem')
+
+  nutritionalItemsCount: (->
+    @get('nutritionalItems.content').length
+  ).property('nutritionalItems.content')

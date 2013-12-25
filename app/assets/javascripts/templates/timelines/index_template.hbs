@@ -9,7 +9,7 @@
   <div class="row">
     {{#each model}}
     <div class="col-sm-4" style="margin-top: 10px">
-      {{#link-to-animated 'timeline' id animations="main:flip"}}
+      {{#link-to-animated 'timeline' this animations="main:flip"}}
           <div class="thumbnail-noconflict">
             <div class="image-container">
               <img {{bindAttr src="image"}} alt="{{caption}}" style="height: 400px; width: 300px;"/>
@@ -17,7 +17,7 @@
             <h3> {{headline}} <span class="label label-default">{{postsCount}} posts</span></h3>
 
             <p>
-              {{#link-to-animated 'posts.new' id class="pull-right" animations="main:flip"}}
+              {{#link-to-animated 'posts.new' this class="pull-right" animations="main:flip"}}
                 <button class="btn btn-default">New post</button>
               {{/link-to-animated}}
             </p>

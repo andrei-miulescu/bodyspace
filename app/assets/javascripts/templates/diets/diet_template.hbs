@@ -8,7 +8,7 @@
 <ul class="nav nav-tabs">
   <li class="active"><a href="#supplements-tab" data-toggle="tab">Supplements
     <span id="supplement-count" class="label label-default">{{supplementCount}}</span></a></li>
-  <li><a href="#nutritional" data-toggle="tab">Nutritional Info <span id="nutrition-count" class="label label-default">23</span></a></li>
+  <li><a href="#nutritional" data-toggle="tab">Nutritional Info <span id="nutrition-count" class="label label-default">{{nutritionalItemsCountForDiet}}</span></a></li>
 </ul>
 
 <div class="tab-content">
@@ -24,9 +24,17 @@
     <div class="thumbnail-noconflict" style="border-top: none; min-height: 600px; border-radius: 0 0 4px 4px">
       <h3>Nutritional Information</h3>
         {{#each supplements}}
+          <h4>{{title}}</h4>
+          <table class="table table-striped">
+            <tr><th>Ingredient</th><th>Quantity</th><th>RDI %</th></tr>
           {{#each nutritionalItems}}
-            {{name}}
+
+
+            <tr><td>{{name}}</td><td>{{quantity}} {{unit}}</td><td>{{rdi}}</td></tr>
+
+
           {{/each}}
+          </table>
         {{/each}}
     </div>
   </div>

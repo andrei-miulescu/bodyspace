@@ -4,7 +4,7 @@
     <ul class="row">
       {{#each supplements}}
         <li class="col-sm-2 thumbnail-noconflict" style="margin: 3px; height:190px;">
-          {{#link-to-animated 'supplement' id animations="main:flip"}}
+          {{#link-to-animated 'supplement' this animations="main:flip"}}
             <img {{bindAttr src="imageUrl"}} style='height: 130px; width: 100px;'/>
 
             <p>{{title}}</p>

@@ -3,4 +3,5 @@ App.NutritionalItem  = DS.Model.extend
 
   name: DS.attr('string')
   rdi: DS.attr('string')
+  unit: DS.attr('string')
   quantity: DS.attr('string')
