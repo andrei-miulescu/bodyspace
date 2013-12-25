@@ -1,8 +1,7 @@
 json.set! :timeline do
   json.extract! @timeline, :id, :headline, :text, :caption
-  json.image @timeline.image.url(:high)
-  json.thumb @timeline.image.url(:thumb)
   json.post_ids @timeline.posts.collect(&:id)
+  json.image @timeline.hero_image
 end
 json.set! :posts do
   json.array! @timeline.posts do |post|

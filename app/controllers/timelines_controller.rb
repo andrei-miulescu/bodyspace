@@ -15,9 +15,6 @@ class TimelinesController < ApplicationController
   def show
   end
 
-  def with_posts
-    render json: Timeline.valid_timelines.includes(:posts).find(params[:id]).media_hash
-  end
   # GET /timelines/new
   def new
     @timeline = Timeline.new
@@ -26,25 +23,13 @@ class TimelinesController < ApplicationController
   # GET /timelines/1/edit
   def edit
   end
-  def create_with_image
-    @timeline = Timeline.find_or_initialize_by(id: params[:id])
-    @timeline.image = params[:file]
-    @timeline.user = current_user
-    respond_to do |format|
-      if @timeline.save(validate: false)
-        format.json { render json: {id: @timeline.id} }
-      else
-        format.json { render json: @timeline.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+
   # POST /timelines
   # POST /timelines.json
   def create
-    @timeline = Timeline.find_or_initialize_by(id: timeline_params[:id])
+    @timeline = Timeline.new()
     @timeline.update_attributes(timeline_params)
     @timeline.user = current_user
-    @timeline.type = 'default'
 
     respond_to do |format|
       if @timeline.save
