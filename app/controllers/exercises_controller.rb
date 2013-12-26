@@ -15,15 +15,15 @@ class ExercisesController < ApplicationController
 
     exercise[:name]        = parsed_page.xpath("/html/body/div[@id='bgCon']/div[@id='mainCon']/div[@id='leftContent']/div[@id='listing']/div[@id='grayBg']/div[@id='detailsCon']/div[@id='exerciseDetails']/h1").text.strip
     exercise[:rating]      = parsed_page.xpath("/html/body/div[@id='bgCon']/div[@id='mainCon']/div[@id='leftContent']/div[@id='listing']/div[@id='grayBg']/div[@id='detailsCon']/div[@id='exerciseRating']/div[@id='largeratingwidget']/div[@class='BBCOMWidget_LargeRating_Con']/div[@class='BBCOMWidget_LargeRating hreview']/span[@class='rating']").text.strip
-    exercise[:exercise_photos] = parsed_page.xpath("/html/body/div[@id='bgCon']/div[@id='mainCon']/div[@id='leftContent']/div[@id='listing']/div[3]/div[@id='Male']/div[@class='exercisePhotos']/div/a[@class='thickbox']/img/@src").collect(&:text)
+    exercise[:exercise_photos] = parsed_page.xpath("/html/body/div[@id='bgCon']/div[@id='mainCon']/div[@id='leftContent']/div[@id='listing']/div/div[@id='Male']/div[@class='exercisePhotos']/div/a[@class='thickbox']/img/@src").collect(&:text)
 
-    exercise[:guide_instructions] = parsed_page.xpath("/html/body/div[@id='bgCon']/div[@id='mainCon']/div[@id='leftContent']/div[@id='listing']/div[4]/div[@class='guideContent']/ol/li").collect(&:text)
-    exercise[:guide_image] = parsed_page.xpath("/html/body/div[@id='bgCon']/div[@id='mainCon']/div[@id='leftContent']/div[@id='listing']/div[4]/div[1]/div[@class='guideImage']/img/@src").text
+    exercise[:guide_instructions] = parsed_page.xpath("/html/body/div[@id='bgCon']/div[@id='mainCon']/div[@id='leftContent']/div[@id='listing']/div/div[@class='guideContent']/ol/li").collect(&:text)
+    exercise[:guide_image] = parsed_page.xpath("/html/body/div[@id='bgCon']/div[@id='mainCon']/div[@id='leftContent']/div[@id='listing']/div/div/div[@class='guideImage']/img/@src").text
 
 
     info_table = parsed_page.xpath("/html/body/div[@id='bgCon']/div[@id='mainCon']/div[@id='leftContent']/div[@id='listing']/div[@id='grayBg']/div[@id='detailsCon']/div[@id='exerciseDetails']/p").text.gsub('  ', '').gsub(': PushYour Rating:', '').gsub(': PullYour Rating:', '').split("\n\n")
-    last = info_table.delete_at(info_table.length - 1).split("\n")
-    exercise[:info_table] = (info_table + last).collect{|a| a.gsub("\n", '' )}
+    info_table.delete_at(info_table.length - 1)
+    exercise[:info_table] = info_table.collect{|a| a.gsub("\n", '' )}
 
     #exercise[:no_alt_exercises] = parsed_page.xpath("/html/body/div[@id='bgCon']/div[@id='mainCon']/div[@id='leftContent']/div[@id='listing']/div[5]/div[@id='altExerciseCon']").text.strip
 
