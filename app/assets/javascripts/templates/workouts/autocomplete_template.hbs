@@ -17,6 +17,9 @@
     {{#each exercise in exercisesResults}}
       <tr>
         <td><a {{bindAttr href="exercise.url"}} target="_blank"> {{exercise.name}} </a></td>
+        <td><button class="btn btn-default ladda-button trigger-ladda" data-spinner-color="black" data-style="zoom-in" {{action viewExercise exercise.url}}>
+          <span class="ladda-label"> View exercise</span>
+        </button></td>
         <td>
           <button type="submit" class="btn btn-default ladda-button" data-style="zoom-in">
             <span class="ladda-label"> Add exercise</span></button>
@@ -26,3 +29,4 @@
     {{/each}}
   </table>
 </div>
+

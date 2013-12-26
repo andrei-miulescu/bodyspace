@@ -25,6 +25,8 @@ Bodyspace::Application.routes.draw do
 
   get 'search_supplements', to: 'search#search_supplements'
 
+  get 'view_exercise', to: 'exercises#view_exercise'
+
   get 'search_exercises', to: 'search#search_exercises'
 
   match 'posts/create_with_image', to: 'posts#create_with_image', via: [:put, :post]

@@ -5,3 +5,9 @@ App.WorkoutsAutocompleteView = Ember.View.extend
     target = @$().find('button')[0]
     l = Ladda.create(target)
     l.start()
+
+  didInsertElement: ->
+    $(document).on('click','.trigger-ladda', ->
+      l = Ladda.create(this)
+      l.start()
+    )
