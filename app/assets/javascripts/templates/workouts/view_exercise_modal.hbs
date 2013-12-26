@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <button type="button" class="close" {{action close target="view"}}>&times;</button>
+  <h3>{{currentExercise.name}}</h3>
+
+  <div style="position: absolute;right: 10px; top: 50px;font-size: 120%;">Rating: <span
+          class="label label-default">{{currentExercise.rating}}/10</span></div>
+</div>
+<div class="modal-body clearfix">
+
+  <div class="col-lg-5">
+    {{#each currentExercise.exercise_photos}}
+      <img {{bindAttr src="this"}} class="col-lg-6" style="height: 275px; width: 275px; margin-bottom: 15px">
+    {{/each}}
+
+  </div>
+  <div class="col-lg-7">
+    <div class="clearfix col-lg-12">
+      <ul class="list-group col-lg-7">
+        {{#each currentExercise.info_table}}
+          <li class="list-group-item">{{this}}</li>
+        {{/each}}
+      </ul>
+      <img {{bindAttr src="currentExercise.guide_image"}} class="col-lg-5" style="height: 275px; width: 275px"/>
+    </div>
+    <ol>
+      {{#each currentExercise.guide_instructions}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ol>
+
+  </div>
+</div>
+<div class="modal-footer">
+  <a href="#" class="btn" {{action close target="view"}}>Close</a>
+</div>

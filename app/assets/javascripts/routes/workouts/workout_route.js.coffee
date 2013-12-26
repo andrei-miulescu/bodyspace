@@ -14,6 +14,6 @@ App.WorkoutRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
         url: "/view_exercise?url=#{url}"
       ).then (response) =>
         @controller.set('currentExercise', response.exercise)
-        @render('workouts/view_modal', { into: 'application', outlet: 'modal', view: 'modal' })
+        @render('workouts/view_exercise_modal', { into: 'application', outlet: 'modal', view: 'modal' })
         Ladda.stopAll()
 )
