@@ -6,6 +6,7 @@ gem 'cancan'
 gem 'devise'
 gem 'doorkeeper', '~> 1.0.0.rc1'
 gem 'pg'
+gem 'pg_array_parser'
 gem 'rolify'
 gem 'sendgrid'
 

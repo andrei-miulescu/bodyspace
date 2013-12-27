@@ -160,6 +160,7 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pg (0.17.0)
+    pg_array_parser (0.0.9)
     polyglot (0.3.3)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
@@ -304,6 +305,7 @@ DEPENDENCIES
   momentjs-rails
   paperclip (~> 3.0)
   pg
+  pg_array_parser
   quiet_assets
   rails (= 4.0.0)
   rails_12factor

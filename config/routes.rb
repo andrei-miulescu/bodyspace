@@ -17,6 +17,8 @@ Bodyspace::Application.routes.draw do
 
   resources :workouts
 
+  resources :exercises
+
   resources :nutritional_items
 
   resources :posts

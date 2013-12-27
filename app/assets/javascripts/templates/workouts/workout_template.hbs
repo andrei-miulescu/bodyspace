@@ -2,6 +2,23 @@
   <button {{action goBack}} class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back</button>
   <h1>{{name}}</h1>
 </div>
+<div class="container">
+  <h3>My exercises</h3>
+  <div class="container" style="margin-top: 20px;">
+    <ul class="row">
+      {{#each exercises}}
+        <li class="col-sm-2 thumbnail-noconflict" style="margin: 3px; height:180px;">
+          {{#link-to-animated 'exercise' this animations="main:flip"}}
+            <img {{bindAttr src="firstPhoto"}} style='height: 130px; width: 100px;'/>
 
+            <p>{{name}}</p>
+          {{/link-to-animated}}
+        </li>
+      {{else}}
+        <h4>No exercises found. Try searching for some to add.</h4>
+      {{/each}}
+    </ul>
+  </div>
+</div>
 
 {{view App.WorkoutsAutocompleteView}}

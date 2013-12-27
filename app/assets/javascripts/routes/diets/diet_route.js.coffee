@@ -14,9 +14,3 @@ App.DietRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
       @get('store').commit()
 
 )
-
-#newRecord = {supplement: {title: title, url_diet: url, image_url: imageUrl, serving: serving, diet_id: @controller.get('model').id}}
-#$.ajax(url: "/supplements", data: newRecord, method: "POST", dataType: 'json').then (response) =>
-#  newRecord =  App.Supplement.createRecord(response)
-#
-#@transitionTo 'home'

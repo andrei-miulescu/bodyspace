@@ -25,6 +25,10 @@ App.Router.map ->
     @route 'new'
     @resource 'workout', {path: ':workout_id'}
 
+  @resource 'exercises', ->
+    @route 'new'
+    @resource 'exercise', {path: ':exercise_id'}
+
   @route "home"
   @route "login"
   @route "logout"

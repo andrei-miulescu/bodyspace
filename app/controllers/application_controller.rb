@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   PUBLIC_ENDPOINTS = [{ controller: 'timelines', action: 'create_with_image'},
                       { controller: 'posts', action: 'create_with_image'},
                       { controller: 'users', action: 'create'},
+                      { controller: 'registrations', action: 'create'},
                       { controller: 'sessions', action: 'destroy'}]
 
   doorkeeper_for :all, :if => lambda { request.xhr? && !PUBLIC_ENDPOINTS.any? { |e| e[:controller] == controller_name && e[:action] == action_name }}
