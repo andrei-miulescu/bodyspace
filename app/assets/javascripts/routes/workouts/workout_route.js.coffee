@@ -32,4 +32,5 @@ App.WorkoutRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
                     workout: workout
 
         @get('store').commit()
+        Ladda.stopAll()
 )
