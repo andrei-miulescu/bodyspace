@@ -1,10 +1,10 @@
 App.TimelinesNewRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
 
-  setupController: ->
-    @controller.newRecord()
+  model: ->
+    @get('store').transaction().createRecord(App.Timeline, {})
 
   actions:
     save: ->
-      @get('store').commit()
+      @currentModel.transaction.commit()
       @transitionToAnimated 'timelines.index', main: 'flip'
 )

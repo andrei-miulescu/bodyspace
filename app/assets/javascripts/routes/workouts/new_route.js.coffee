@@ -1,10 +1,10 @@
 App.WorkoutsNewRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
 
-  setupController: ->
-    @controller.newRecord()
+  model: ->
+    @get('store').transaction().createRecord(App.Workout, {})
 
   actions:
     save: ->
-      @get('store').commit()
+      @currentModel.transaction.commit()
       @transitionToAnimated 'workouts.index', main: 'flip'
 )
