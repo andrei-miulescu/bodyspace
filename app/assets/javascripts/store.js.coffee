@@ -1,39 +1,34 @@
 # http://emberjs.com/guides/models/using-the-store/
 
-Ember.RSVP.configure "onerror", (e) ->
-  if e.status == 401
-    cookies = document.cookie.split('=')
-    cookieNames = _.reject(cookies, (num) ->
-        num % 2 is 0
-    )
-    for cookieName in cookieNames
-      $.removeCookie(cookieName)
+App.logoutAndRedirect = ->
+  cookies = document.cookie.split('=')
+  cookieNames = _.reject(cookies, (num) ->
+    num % 2 is 0
+  )
+  for cookieName in cookieNames
+    $.removeCookie(cookieName)
+  transition = App.__container__.lookup('router:main').router.activeTransition
+  App.__container__.lookup('controller:application').set('session.attemptedTransition', transition);
+  if Ember.canInvoke(transition, "send")
+    transition.send "login"
+  else
     App.__container__.lookup('router:main').transitionToAnimated('login', {main: 'flip'})
 
+Ember.RSVP.configure "onerror", (e) ->
+  if e.status == 401
+    App.logoutAndRedirect()
+
+App.ApplicationAdapter = DS.RESTAdapter.extend
+  buildURL: (record, suffix) ->
+    @_super(record, suffix) + ".json"
 
 App.Store = DS.Store.extend
   revision: 12
-  adapter: DS.RESTAdapter.extend
-            buildURL: (record, suffix) ->
-               @_super(record, suffix) + ".json"
+  adapter: App.ApplicationAdapter
 
 DS.JSONTransforms.array =
-
-# If the outgoing json is already a valid javascript array
-# then pass it through untouched. In all other cases, replace it
-# with an empty array.  This means null or undefined values
-# automatically become empty arrays when serializing this type.
-
   serialize: (jsonData)->
     if Em.typeOf(jsonData) is 'array' then jsonData else []
-
-
-# If the incoming data is a javascript array, pass it through.
-# If it is a string, then coerce it into an array by splitting
-# it on commas and trimming whitespace on each element.
-# Otherwise pass back an empty array.  This has the effect of
-# turning all other data types (including nulls and undefined
-# values) into empty arrays.
 
   deserialize: (externalData)->
     switch Em.typeOf(externalData)
