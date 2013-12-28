@@ -13,6 +13,9 @@ module Bodyspace
 
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
+    config.time_zone = 'Melbourne'
+    config.active_record.default_timezone = :local
+
     #config.assets.precompile << Proc.new { |path|
     #  if path =~ /\.(eot|svg|ttf|woff)\z/
     #    true

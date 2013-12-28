@@ -40,8 +40,8 @@ class PostsController < ApplicationController
     @post.timeline = Timeline.find(post_params.delete(:timeline_id))
     @post.update_attributes(post_params)
     @post.user = current_user
-    @post.start_date = Date.today
-    @post.end_date = Date.tomorrow
+    @post.start_date = Time.zone.now
+    @post.end_date = Time.zone.now + 1.day
     respond_to do |format|
       if @post.save
         format.json { render action: 'show', status: :created, location: @post }
