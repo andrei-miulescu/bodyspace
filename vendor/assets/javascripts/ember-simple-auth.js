@@ -536,7 +536,7 @@ Ember.SimpleAuth.ApplicationRouteMixin = Ember.Mixin.create({
       @method login
     */
     login: function() {
-      this.transitionTo(Ember.SimpleAuth.loginRoute);
+      this.transitionToAnimated(Ember.SimpleAuth.loginRoute, {main: 'flip'});
     },
 
     /**
@@ -551,10 +551,11 @@ Ember.SimpleAuth.ApplicationRouteMixin = Ember.Mixin.create({
     loginSucceeded: function() {
       var attemptedTransition = this.get('session.attemptedTransition');
       if (attemptedTransition) {
+        Ember.AnimatedContainerView.enqueueAnimations({main: "flip"});
         attemptedTransition.retry();
         this.set('session.attemptedTransition', undefined);
       } else {
-        this.transitionTo(Ember.SimpleAuth.routeAfterLogin);
+        this.transitionToAnimated(Ember.SimpleAuth.routeAfterLogin, {main: 'flip'});
       }
     },
 
@@ -592,7 +593,7 @@ Ember.SimpleAuth.ApplicationRouteMixin = Ember.Mixin.create({
     */
     logout: function() {
       this.get('session').destroy();
-      this.transitionTo(Ember.SimpleAuth.routeAfterLogout);
+      this.transitionToAnimated(Ember.SimpleAuth.routeAfterLogout, {main: 'flip'});
     }
   }
 });

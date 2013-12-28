@@ -10,8 +10,8 @@
 #= require handlebars
 #= require ember
 #= require ember-data
-#= require ember-simple-auth
 #= require ember-animated-outlet
+#= require ember-simple-auth
 #= require moment
 #= require_self
 #= require bodyspace
