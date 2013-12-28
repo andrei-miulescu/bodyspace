@@ -8,10 +8,6 @@ App.Timeline  = DS.Model.extend
 
   posts: DS.hasMany('App.Post')
 
-  postsCount: (->
-    @get('posts.content').length
-  ).property('posts.@each')
-
   sortedPosts: (->
     posts = @get("posts").toArray()
     posts.sort((a, b) ->

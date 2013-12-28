@@ -1,7 +1,6 @@
-
 <div class="row">
 
-    {{view App.SupplementsSearchBarView }}
+  {{view App.SupplementsSearchBarView }}
 
 </div>
 
@@ -9,9 +8,11 @@
   <ul class="row">
     {{#each supplement in supplementResults}}
       <li class="col-sm-3 thumbnail-noconflict" style="margin: 3px">
-        <img {{bindAttr src="supplement.image_url"}} style='height: 130px; width: 100px;' />
+        <img {{bindAttr src="supplement.image_url"}} style='height: 130px; width: 100px;'/>
+
         <div class='caption'>
           <p>{{truncatepad supplement.title 60}}</p>
+
           <p>
             {{view Ember.Select
             content=servings
@@ -20,15 +21,14 @@
             selection=supplement.selectedServing
             class="servings-select form-control pull-left"
             }}
-
-              <button {{action 'addToDiet' supplement}} class='btn btn-default ladda-button pull-right' data-style="zoom-in" role='button'><span class="ladda-label">Add to diet</span></button>
-            </p>
+            <button {{action 'addToDiet' supplement}} class='btn btn-default ladda-button pull-right'
+                                                      data-style="zoom-in" role='button'><span class="ladda-label">Add to diet</span>
+            </button>
+          </p>
           <div style='clear:both;'></div>
         </div>
         <div class='pull-left' style='position: absolute; top: 5px;'> {{supplement.rating}}/10</div>
       </li>
-    {{else}}
-      <div class="spinner hidden"></div>
     {{/each}}
   </ul>
 </div>

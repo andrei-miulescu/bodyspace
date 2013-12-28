@@ -9,13 +9,15 @@
     {{#link-to-animated 'diet' id animations="main:flip"}}
       <div class="col-sm-6 col-md-4" style="margin-top: 30px">
         <div class="thumbnail-noconflict">
-          <h3> {{title}} <span class="label label-default">{{supplementCount}} supplements</span></h3>
+          <h3> {{title}}</h3>
           <p>
               {{#link-to-animated 'diet' id animations="main:flip"}}<button class="btn btn-default">Edit diet</button>{{/link-to-animated}}
           </p>
         </div>
       </div>
     {{/link-to-animated}}
+  {{else}}
+    <h4>No diets added. Try adding one.</h4>
   {{/each}}
 </div>
 
