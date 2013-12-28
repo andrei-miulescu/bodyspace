@@ -33,6 +33,7 @@ App.Router.map ->
   @route "login"
   @route "logout"
   @route "registration"
+  @route "error"
 
 
 

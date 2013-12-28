@@ -17,6 +17,8 @@ App.logoutAndRedirect = ->
 Ember.RSVP.configure "onerror", (e) ->
   if e.status == 401
     App.logoutAndRedirect()
+  else
+    App.__container__.lookup('router:main').transitionToAnimated('error', {main: 'flip'})
 
 App.ApplicationAdapter = DS.RESTAdapter.extend
   buildURL: (record, suffix) ->
