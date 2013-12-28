@@ -2,7 +2,7 @@ App.WorkoutRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
   actions:
     searchExercises: (query) ->
       $.ajax(
-        url: "api/v1/search_exercises?q=#{query}"
+        url: "/api/v1/search_exercises?q=#{query}"
       ).then (response) =>
         @controller.set('exercisesResults', response.exercises)
         Ladda.stopAll()
@@ -11,7 +11,7 @@ App.WorkoutRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
 
     viewExercise: (url) ->
       $.ajax(
-        url: "api/v1/view_exercise?url=#{url}"
+        url: "/api/v1/view_exercise?url=#{url}"
       ).then (response) =>
         @controller.set('currentExercise', response.exercise)
         @render('workouts/view_exercise_modal', { into: 'application', outlet: 'modal', view: 'modal' })
@@ -19,7 +19,7 @@ App.WorkoutRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
 
     addExercise: (url, workout) ->
       $.ajax(
-        url: "api/v1/view_exercise?url=#{url}"
+        url: "/api/v1/view_exercise?url=#{url}"
       ).then (response) =>
         rawExercise = response.exercise
         exercise = App.Exercise.createRecord
