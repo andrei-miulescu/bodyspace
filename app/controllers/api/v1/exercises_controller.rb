@@ -1,5 +1,4 @@
-class ExercisesController < ApplicationController
-
+class Api::V1::ExercisesController < Api::V1::ApiController
   before_action :set_exercise, only: [:show, :edit, :update, :destroy]
   # GET /exercises
   # GET /exercises.json
@@ -29,7 +28,7 @@ class ExercisesController < ApplicationController
 
     respond_to do |format|
       if @exercise.save
-        format.json { render action: 'show', status: :created, location: @exercise }
+        format.json { render action: 'show', status: :created, location: [:api, :v1, @exercise] }
       else
         format.json { render json: @exercise.errors, status: :unprocessable_entity }
       end
@@ -68,7 +67,7 @@ class ExercisesController < ApplicationController
   end
 
   def exercise_params
-    params.require(:exercise).permit(:name, :rating, :guide_image, :workout_id, :info_table => [], :exercise_photos => [], :guide_instructions =>[])
+    params.require(:exercise).permit(:name, :rating, :guide_image, :workout_id, :info_table => [], :exercise_photos => [], :guide_instructions => [])
   end
 
   def get_exercise_data(url)

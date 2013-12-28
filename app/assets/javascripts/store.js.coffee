@@ -21,6 +21,7 @@ Ember.RSVP.configure "onerror", (e) ->
     App.__container__.lookup('router:main').transitionToAnimated('error', {main: 'flip'})
 
 App.ApplicationAdapter = DS.RESTAdapter.extend
+  namespace: 'api/v1'
   buildURL: (record, suffix) ->
     @_super(record, suffix) + ".json"
 

@@ -1,6 +1,6 @@
 App.Router = Em.Router.extend
   enableLogging: true
-
+  location: 'history'
 
 
 App.Router.map ->

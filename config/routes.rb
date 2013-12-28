@@ -1,4 +1,5 @@
 require 'sidekiq/web'
+require 'api_constraints'
 
 Bodyspace::Application.routes.draw do
   root :to => 'home#ember'
@@ -7,35 +8,39 @@ Bodyspace::Application.routes.draw do
 
   use_doorkeeper
 
+
   devise_for :users, :controllers => {:registrations => 'registrations', :sessions => 'sessions'}
 
-  resources :supplements
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
 
-  resources :diets
+      resources :supplements
 
-  resources :timelines
+      resources :diets
 
-  resources :workouts
+      resources :timelines
 
-  resources :exercises
+      resources :workouts
 
-  resources :nutritional_items
+      resources :exercises
 
-  resources :posts
+      resources :nutritional_items
 
-  resources :users
+      resources :posts
 
-  get 'search_supplements', to: 'search#search_supplements'
+      resources :users
 
-  get 'view_exercise', to: 'exercises#view_exercise'
+      get 'search_supplements', to: 'search#search_supplements'
 
-  get 'search_exercises', to: 'search#search_exercises'
+      get 'view_exercise', to: 'exercises#view_exercise'
 
-  match 'posts/create_with_image', to: 'posts#create_with_image', via: [:put, :post]
+      get 'search_exercises', to: 'search#search_exercises'
 
-  match 'timelines/create_with_image', to: 'timelines#create_with_image', via: [:put, :post]
+      match 'posts/create_with_image', to: 'posts#create_with_image', via: [:put, :post]
 
-  get '/t/:id.json', to: 'timelines#with_posts'
+      match 'timelines/create_with_image', to: 'timelines#create_with_image', via: [:put, :post]
+    end
+  end
 
   get '*path' => 'home#ember'
 
